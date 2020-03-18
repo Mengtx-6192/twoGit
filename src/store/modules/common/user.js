@@ -15,7 +15,7 @@ const getters = {
     }
 };
 const mutations = {
-    setRAuth (state, value) {
+    setRAuth(state, value) {
         state.rAuth = value;
         localStorage.setItem('r-auth', value);
     },
@@ -29,7 +29,7 @@ const mutations = {
     }
 };
 const actions = {
-    setAccountInfo({commit}, account) {
+    setAccountInfo({ commit }, account) {
         let rAuth = account.token_type + ' ' + account.access_token;
 
         localStorage.setItem('refreshToken', account.refresh_token);
@@ -39,7 +39,7 @@ const actions = {
         commit('setLoginStatus', true);
         commit('setRAuth', rAuth);
     },
-    clearAccountInfo({commit}) {
+    clearAccountInfo({ commit }) {
         localStorage.setItem('refreshToken', '');
         commit('setAccountInfo', '');
         commit('setLoginStatus', false);

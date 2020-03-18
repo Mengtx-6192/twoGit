@@ -8,7 +8,7 @@ Vue.use(Router);
 
 const loadRoutes = (rous, paths, children) => {
     if (_.has(rous, 'path')) {
-        let ps = _.flattenDeep(paths).filter((p) => p);
+        let ps = _.flattenDeep(paths).filter(p => p);
 
         if (_.last(ps) === rous.name) {
             ps.splice(ps.length - 1, 1);
@@ -25,7 +25,7 @@ const loadRoutes = (rous, paths, children) => {
         rous.name = _.concat(ps, [rous.name]).join('.');
 
         if (rous.children) {
-            _.each(rous.children, (child) => {
+            _.each(rous.children, child => {
                 loadRoutes(child, [paths, child.name], true);
             });
             return [rous];
@@ -34,7 +34,7 @@ const loadRoutes = (rous, paths, children) => {
     }
 
     if (rous.length) {
-        return _.map(rous, (r) => {
+        return _.map(rous, r => {
             return loadRoutes(r, [paths]);
         });
     } else {
