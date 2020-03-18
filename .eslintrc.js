@@ -40,7 +40,7 @@ module.exports = {
         'no-unused-vars': [0, {'vars': 'all', 'args': 'after-used'}], // 不能有声明后未被使用的变量或参数
         'curly': [2, 'all'], // 必须使用 if(){} 中的{}
         'array-bracket-spacing': [2, 'never'], // 是否允许非空数组里面有多余的空格
-        'no-extra-parens': 2,// 禁止非必要的括号
+        'no-extra-parens': 0,// 禁止非必要的括号
         'no-extra-semi': 2,// 禁止多余的冒号
         'key-spacing': [2, { 'beforeColon': false, 'afterColon': true }], // 对象字面量中冒号的前后空格
         'no-irregular-whitespace': 2,// 不能有不规则的空格
