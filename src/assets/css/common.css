@@ -1,0 +1,72 @@
+body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #4f53e7;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transition: color .2s ease;
+    transition: color .2s ease;
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.el-table th {
+    background: #f8faff !important;
+}
+
+.el-checkbox__input.is-checked+.el-checkbox__label {
+    color: #4F53E7 !important;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    background-color: #4F53E7 !important;
+    border-color: #4F53E7 !important;
+}
+
+.el-checkbox__inner:hover {
+    border-color: #4F53E7 !important;
+}
+
+
+/* 兼容safari input 光标不居中 */
+.el-input__inner {
+    padding: 10px 15px !important;
+    line-height: inherit !important;
+}
+
+.el-input--prefix .el-input__inner {
+    padding-left: 30px !important;
+}
+
+.el-table .caret-wrapper {
+    height: 25px !important;
+}
+
+.el-table .sort-caret.ascending {
+    top: 1px !important;
+}
+
+.el-table .sort-caret.descending {
+    bottom: 2px !important;
+}
