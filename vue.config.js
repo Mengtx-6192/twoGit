@@ -9,11 +9,13 @@ module.exports = {
         port: 8080,
         proxy: {
             // todo 配置跨域路径
-            '/rdp-auth': {
+            '/api': {
                 target: local,
                 changeOrigin: true,
                 ws: true,
-                pathRewrite: {}
+                pathRewrite: {
+                    '^/api': '/'
+                }
             }
         },
         sockHost: 'http://127.0.0.1:8080'

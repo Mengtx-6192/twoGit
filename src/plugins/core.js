@@ -101,13 +101,15 @@ export default {
                 let refreshToken = localStorage.getItem('refreshToken'); // 从localStorage中取出token过期时间
                 let rAuth = localStorage.getItem('r-auth');
 
+                // 统一添加/api 转发接口
+                config.url = `/api${config.url}`;
                 this.startLoading();
 
                 // 添加请求头
                 config.headers.common['r-auth'] = rAuth;
 
                 // 登录接口和刷新token接口绕过
-                if (config.url.indexOf('/rdp-auth/oauth/token') >= 0) {
+                if (config.url.indexOf('/api/rdp-auth/oauth/token') >= 0) {
                     return config;
                 }
 
@@ -169,7 +171,7 @@ export default {
             response => {
                 this.endLoading();
 
-                if (response.status === 200 && response.config.url === '/rdp-auth/oauth/token') {
+                if (response.status === 200 && response.config.url === '/api/rdp-auth/oauth/token') {
                     return response;
                 }
 
