@@ -137,7 +137,7 @@ export default {
                         this.$router.push({ path: '/test.html' });
                     })
                     .catch(err => {
-                        this.$message.error(_.get(err.error_description, '接口错误'));
+                        this.$message.error(err.error_description || '接口错误');
                     });
             }
         },
