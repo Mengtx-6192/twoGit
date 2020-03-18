@@ -26,7 +26,6 @@ module.exports = {
                 singleQuote: true, // 使用单引号, 默认false(在jsx中配置无效, 默认都是双引号)
                 trailingComma: 'none', // 行尾逗号,默认none,可选 none|es5|all
                 bracketSpacing: true, // 对象中的空格 默认true
-                arrowParens: 'always', // 箭头函数参数括号 默认avoid 可选 avoid| always
                 printWidth: 200,
                 arrowParens: 'avoid', // (x) => {} 箭头函数参数只有一个时是否要有小括号。avoid：省略括号
                 jsxBracketSameLine: false, // 在jsx中把'>' 是否单独放一行
