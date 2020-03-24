@@ -16,19 +16,25 @@ export default {
                         url: '/example/tree.html'
                     },
                     {
-                        name: '菜单2',
+                        name: '表格',
                         id: '2',
+                        icon: 'el-icon-position',
+                        url: '/example/table.html'
+                    },
+                    {
+                        name: '菜单3',
+                        id: '3',
                         icon: 'el-icon-position',
                         children: [
                             {
-                                id: '2-1',
-                                name: '菜单2-1',
+                                id: '3-1',
+                                name: '菜单3-1',
                                 img: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/storeGo/img/datamodel.png',
                                 url: '/process/task/noDone.html'
                             },
                             {
-                                id: '2-2',
-                                name: '菜单2-2',
+                                id: '3-2',
+                                name: '菜单3-2',
                                 img: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/storeGo/img/datamodel.png',
                                 url: '/process/task/done.html'
                             }

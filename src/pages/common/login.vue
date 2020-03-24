@@ -1,5 +1,8 @@
 <template>
-    <div class="login-section" :style="'background:url(' + backgroundImage + ') center 0 no-repeat;background-size: cover;'">
+    <div
+        class="login-section"
+        :style="'background:url(' + backgroundImage + ') center 0 no-repeat;background-size: cover;'"
+    >
         <div class="content-box" :class="formPlacement">
             <p class="title">Local Data Base</p>
             <div class="login-form">
@@ -134,7 +137,7 @@ export default {
                     })
                     .then(ret => {
                         this.setAccountInfo(ret);
-                        this.$router.push({ path: '/test.html' });
+                        this.$router.push({ path: '/example/tree.html' });
                     })
                     .catch(err => {
                         this.$message.error(err.error_description || '接口错误');
@@ -176,7 +179,10 @@ export default {
             }
         },
         validPasswordValue() {
-            this.passWordError = this.password === '' || this.password.length < this.passwordMin || this.password.length > this.passwordMax;
+            this.passWordError =
+                this.password === '' ||
+                this.password.length < this.passwordMin ||
+                this.password.length > this.passwordMax;
             if (this.password === '') {
                 this.errorMessage = '密码不能为空';
                 return false;
