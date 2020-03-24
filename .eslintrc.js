@@ -12,7 +12,8 @@ module.exports = {
         parser: 'babel-eslint'
     },
     globals: {
-        '_': true
+        '_': true,
+        'Vue': true
     },
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

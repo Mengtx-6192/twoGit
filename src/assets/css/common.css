@@ -70,3 +70,72 @@ a {
 .el-table .sort-caret.descending {
     bottom: 2px !important;
 }
+
+.tree-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* element tree 样式调整 */
+.tree-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tree-folder {
+    background-image: url(../images/folder.png);
+}
+
+.tree-child {
+    background-image: url(../images/data.png);
+}
+
+.el-tree--highlight-current .el-tree-node .el-tree-node__content:hover {
+    background-color: #2c40ae !important;
+    color: #fff;
+}
+
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+    background-color: #4f53e7 !important;
+    color: #fff !important;
+}
+
+.el-tree--highlight-current .el-tree-node.is-current .tree-folder,
+.el-tree-node__content:hover .tree-folder {
+    background-image: url(../images/treeFolder.png) !important;
+}
+
+.el-tree--highlight-current .el-tree-node.is-current .tree-child,
+.el-tree-node__content:hover .tree-child {
+    background-image: url(../images/treeData.png) !important;
+}
+
+.el-tree-node__content {
+    cursor: default !important;
+}
+
+.el-tree--highlight-current .el-tree-node .el-tree-node__content {
+    cursor: pointer !important;
+}
+
+.el-tree-node__content:hover {
+    background-color: transparent !important;
+}
+
+.el-tree-node:focus>.el-tree-node__content {
+    background-color: transparent !important;
+}
+
+.el-tree--highlight-current .el-tree-node__content:hover .el-dropdown {
+    color: #fff;
+}

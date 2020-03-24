@@ -1,7 +1,5 @@
-import test from './test';
-import testNest from './testNest';
+import example from './example';
 
 export default {
-    test,
-    testNest
+    example
 };

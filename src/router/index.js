@@ -6,6 +6,14 @@ import store from '../store/index';
 
 Vue.use(Router);
 
+/**
+ * 重写路由的push方法
+ */
+const routerPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+    return routerPush.call(this, location).catch(error => error);
+};
+
 const loadRoutes = (rous, paths, children) => {
     if (_.has(rous, 'path')) {
         let ps = _.flattenDeep(paths).filter(p => p);

@@ -9,7 +9,7 @@ const router = [
     },
     {
         path: '/',
-        redirect: '/dataModel/index.html'
+        redirect: '/example/tree.html'
     },
     {
         path: '/401.html',

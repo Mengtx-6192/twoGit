@@ -1,0 +1,212 @@
+<template>
+    <div class="tree-modal">
+        <tree-title :treeTitleObj="treeTitleObj" v-if="treeTitleObj.title"></tree-title>
+        <el-input
+            placeholder="输入关键字进行过滤"
+            v-model="filterText"
+            size="small"
+            class="filter-tree"
+            v-if="treeObj.search"
+        ></el-input>
+        <el-tree
+            ref="elTree"
+            :data="treeObj.treeData"
+            node-key="id"
+            check-strictly
+            :highlight-current="treeObj.highlightCurrent || true"
+            :show-checkbox="treeObj.showCheckbox"
+            :default-expand-all="treeObj.expandAll"
+            :default-expanded-keys="expandKeys"
+            :current-node-key="selectedNode"
+            :expand-on-click-node="false"
+            :props="treeObj.defaultProps"
+            :render-content="renderContent"
+            :filter-node-method="filterNode"
+            @current-change="handlerCurrentChange"
+            @node-click="nodeClick"
+        >
+        </el-tree>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'treeModal',
+    props: {
+        treeTitleObj: Object,
+        treeObj: Object
+    },
+    data() {
+        return {
+            filterText: '',
+            curNode: null,
+            selectedNode: this.treeObj.selectedNode,
+            expandKeys: this.treeObj.expandKeys,
+            renderContent: (h, { node, data, store }) => {
+                return (
+                    <span class="custom-tree-node" on-click={() => this.beforeClick(data, node)}>
+                        <span class="tree-node-title" on-mouseenter={e => this.mouseEnterNodeTitle(e, data)}>
+                            <i on-class={data.children ? 'tree-icon tree-folder' : 'tree-icon tree-child'} />
+                            {data.showTitleTip ? (
+                                <el-tooltip
+                                    content={node.label}
+                                    placement="bottom"
+                                    hide-after={3000}
+                                    popper-class="tree-title-tooltip"
+                                >
+                                    <span class="tree-name">{node.label}</span>
+                                </el-tooltip>
+                            ) : (
+                                <span class="tree-name" velse>
+                                    {node.label}
+                                </span>
+                            )}
+                        </span>
+                        <span class="right-menu">
+                            {data.children && this.treeObj.menuList.length && (
+                                <el-dropdown trigger="click" on-command={title => this.onClickTreeBtn(title, data)}>
+                                    <span class="el-dropdown-link">
+                                        <i class="el-icon-more"></i>
+                                    </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        {this.treeObj.menuList.map((item, index) => {
+                                            return (
+                                                <el-dropdown-item command={item.event}>{item.title}</el-dropdown-item>
+                                            );
+                                        })}
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            )}
+
+                            {this.treeObj.rightRender && this.treeObj.rightRender(data, node, store)}
+                        </span>
+                    </span>
+                );
+            }
+        };
+    },
+    watch: {
+        treeObj: {
+            deep: true,
+            handler() {
+                this.$nextTick(() => {
+                    this.$refs.elTree.setCurrentKey(this.treeObj.selectedNode);
+                });
+                this.expandKeys = this.treeObj.expandKeys;
+            }
+        },
+        filterText(val) {
+            this.$refs.elTree.filter(val);
+        }
+    },
+    methods: {
+        onClickTreeBtn(title, node) {
+            this.$emit('click-tree-btns', { title, node });
+        },
+        filterNode(value, data) {
+            if (!value) {
+                return true;
+            }
+            return data[this.defaultProps.label || 'label'].indexOf(value) !== -1;
+        },
+        nodeClick(data, node, event) {
+            if (this.treeObj.folderNotClick && data.treeNodeType === 1) {
+                return;
+            }
+            this.$emit('node-click', data);
+        },
+
+        // 配置文件夹节点不可以点， 阻止点击效果
+        handlerCurrentChange(data, node) {
+            if (this.treeObj.folderNotClick && data.treeNodeType === 1) {
+                node.isCurrent = false;
+                this.$nextTick(() => {
+                    this.$refs.elTree.setCurrentKey(this.curNode.id);
+                });
+                return;
+            }
+        },
+        // 在点击节点选中之前，先获取当前的选中节点
+        beforeClick() {
+            this.curNode = this.$refs.elTree.getCurrentNode();
+        },
+
+        // 鼠标悬浮在树节点标题上
+        mouseEnterNodeTitle({ target }, data) {
+            let status = target.scrollWidth > target.clientWidth;
+
+            if (status) {
+                Vue.set(data, 'showTitleTip', status);
+            }
+        }
+    }
+};
+</script>
+
+<style lang="scss" scoped>
+.tree-modal {
+    width: 240px;
+    border-right: 1px solid #deeaff;
+    height: calc(100vh - 60px);
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+</style>
+
+<style lang="scss">
+.tree-modal {
+    .custom-tree-node {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        flex: 1;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    .el-tree-node__content {
+        height: 35px;
+
+        &:hover {
+            .right-menu {
+                visibility: visible;
+            }
+        }
+    }
+
+    .el-dropdown-menu__item {
+        font-size: 12px;
+        line-height: 30px;
+    }
+
+    .right-menu {
+        visibility: hidden;
+        display: flex;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter-tree {
+        margin: 0 0 10px;
+    }
+
+    .tree-node-title {
+        flex: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+    }
+
+    .tree-name {
+        vertical-align: middle;
+    }
+}
+
+.tree-title-tooltip {
+    opacity: 0.8 !important;
+}
+</style>

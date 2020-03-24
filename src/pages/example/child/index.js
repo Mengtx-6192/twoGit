@@ -1,5 +1,5 @@
 export default {
-    path: '/testNest/child.html',
+    path: '/example/child.html',
     name: 'child',
     component: () => import(/* webpackChunkName: "common" */ './child'),
     meta: {

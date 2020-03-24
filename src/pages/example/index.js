@@ -1,9 +1,10 @@
 import layout from './layout';
 import child from './child';
+import tree from './tree';
 
 export default {
-    path: '/testNest',
-    name: 'testNest',
+    path: '/example',
+    name: 'example',
     component: layout,
-    children: [child]
+    children: [child, tree]
 };
