@@ -87,6 +87,13 @@ export default {
         })
     },
     mounted() {
+        let { path } = this.$route;
+        let curMenu = _.filter(this.menuList, { page: path });
+
+        if (!_.isEmpty(curMenu)) {
+            this.activeIndex = curMenu[0].id;
+        }
+
         this.getUser();
     },
     methods: {

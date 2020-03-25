@@ -2,7 +2,7 @@
     <div class="table-page">
         <el-card class="box-card" shadow="hover">
             <div slot="header" class="clearfix">
-                <b>可编辑表格</b>
+                <b>可编辑表格（配置同NOCO）</b>
             </div>
             <custom-table ref="table" :options="tableOptions" @on-edit-change="editChange"></custom-table>
         </el-card>
