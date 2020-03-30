@@ -28,6 +28,7 @@
             @current-change="currentChange"
             @header-dragend="headerDragend"
             @expand-change="expandChange"
+            @on-table-mounted="tableMounted"
             :border="options.border"
             :stripe="options.stripe"
             :height="options.height"
@@ -141,7 +142,7 @@ export default {
         innerColumn() {
             this.columns = this.columnsCopy;
 
-            var columns = this.initColumns(this.columnsCopy);
+            let columns = this.initColumns(this.columnsCopy);
 
             if (this.options.selection) {
                 let hasFixed = this.options.selectionFixed || _.find(this.options.columns, it => it.fixed === 'left');
@@ -168,7 +169,7 @@ export default {
                             const t = () => {
                                 this.selectRadioRow(row, index);
                             };
-                            var self = this;
+                            let self = this;
 
                             if (!self.selectedRadioRow) {
                                 self.selectedRadioRow = {};
@@ -190,9 +191,12 @@ export default {
     },
 
     methods: {
+        tableMounted() {
+            this.$emit('on-table-mounted');
+        },
         initColumns(cols) {
-            var self = this;
-            var columns = [];
+            let self = this;
+            let columns = [];
             _.each(cols, item => {
                 Vue.set(item, 'defaultVisible', item.defaultVisible || false);
                 Vue.set(item, 'alwaysVisible', item.alwaysVisible || false);
@@ -301,17 +305,22 @@ export default {
                     item.render = (h, { row, index }) => {
                         return (
                             <div>
-                                {_.map(item.buttons, it => (
-                                    <el-button
-                                        v-show={self.buttonShow(it.visibleExpression || it.visible, row)}
-                                        type={it.type || ''}
-                                        size={it.size || 'mini'}
-                                        round={it.round || false}
-                                        plain={it.plain || false}
-                                        disabled={self.getButtonDisabled(it, row, index)}
-                                        onClick={self.wrapperFunc(self.buttonClick, it.onClick, row, index, it)}>
-                                        {it.name}
-                                    </el-button>
+                                {_.map(item.buttons, (it, btnIndex) => (
+                                    <span onClick={self.wrapperFunc(self.buttonClick, it.onClick, row, index, it)}>
+                                        <el-link
+                                            v-show={self.buttonShow(it.visibleExpression || it.visible, row)}
+                                            type={it.type || 'default'}
+                                            size={it.size || 'mini'}
+                                            underline={it.underline || false}
+                                            icon={it.icon || null}
+                                            disabled={self.getButtonDisabled(it, row, index)}
+                                        >
+                                            {it.name}
+                                        </el-link>
+                                        {btnIndex < item.buttons.length - 1 && (
+                                            <el-divider direction="vertical"></el-divider>
+                                        )}
+                                    </span>
                                 ))}
                             </div>
                         );
@@ -355,7 +364,8 @@ export default {
                                     self.editChange(data, item, value, extend);
                                 }}
                                 row={row}
-                                column={item}></Comp>
+                                column={item}
+                            ></Comp>
                         );
                     };
                 }
@@ -373,7 +383,8 @@ export default {
                                         onOn-change={() => {
                                             self.conditionChange(column);
                                         }}
-                                        column={column}></Comp>
+                                        column={column}
+                                    ></Comp>
                                 </div>
                             </div>
                         );
@@ -565,7 +576,7 @@ export default {
         },
 
         buttonShow(visibleExpression, row) {
-            var options = this.options;
+            let options = this.options;
             if (!visibleExpression) {
                 return true;
             }

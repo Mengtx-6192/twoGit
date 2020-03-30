@@ -21,7 +21,6 @@
         :header-align="item.headerAlign"
         :class-name="item.className"
         :label-class-name="item.labelClassName"
-        :selectable="item.selectable"
         :reserve-selection="item.reserveSelection"
         :filters="item.filters"
         :filter-placement="item.filterPlacement"
@@ -50,11 +49,7 @@
         </template>
 
         <template v-if="item.children">
-            <table-column
-                v-for="(child, index) in item.children"
-                :key="index"
-                :item="child"
-            ></table-column>
+            <table-column v-for="(child, index) in item.children" :key="index" :item="child"></table-column>
         </template>
     </el-table-column>
 </template>

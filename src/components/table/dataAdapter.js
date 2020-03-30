@@ -7,7 +7,7 @@
 
 import Vue from 'vue';
 
-var defaultConfig = {
+let defaultConfig = {
     totalRoot: 'result>totalSize',
     pageSizeName: '_pageSize',
     pageNumberName: '_pageNo',
@@ -17,7 +17,7 @@ var defaultConfig = {
 function adapter(options) {
     options = _.assign({}, defaultConfig, options);
     this.load = (pageSize, pageNumber, params, pageable, headers) => {
-        var config = {};
+        let config = {};
 
         if (pageable) {
             config[options.pageSizeName] = pageSize;
@@ -72,15 +72,12 @@ function adapter(options) {
         }
 
         return def.then(res => {
-            var result = {
+            let result = {
                 total:
                     options.totalRoot.indexOf('>') !== -1
                         ? pickData(res, options.totalRoot)
                         : _.get(res, options.totalRoot),
-                list:
-                    (options.root.indexOf('>') !== -1
-                        ? pickData(res, options.root)
-                        : _.get(res, options.root)) || [],
+                list: (options.root.indexOf('>') !== -1 ? pickData(res, options.root) : _.get(res, options.root)) || [],
                 pageSize: pageSize,
                 pageNumber: pageNumber,
                 original: res
@@ -105,13 +102,13 @@ function pickData(data, root) {
 }
 
 function convertToGetParams(url, data) {
-    if (typeof data === 'undefined' || data == null || typeof data !== 'object') {
+    if (typeof data === 'undefined' || data === null || typeof data !== 'object') {
         return url;
     }
-    url += url.indexOf('?') != -1 ? '' : '?';
-    for (var k in data) {
+    url += url.indexOf('?') !== -1 ? '' : '?';
+    for (let k in data) {
         url +=
-            (url.indexOf('=') != -1 ? '&' : '') +
+            (url.indexOf('=') !== -1 ? '&' : '') +
             k +
             '=' +
             (data[k] === undefined || data[k] === null ? '' : encodeURIComponent(data[k]));
@@ -126,9 +123,7 @@ function convertParams(json, headers) {
                 return (
                     encodeURIComponent(k) +
                     '=' +
-                    encodeURIComponent(
-                        typeof json[k] === 'object' ? JSON.stringify(json[k]) : json[k]
-                    )
+                    encodeURIComponent(typeof json[k] === 'object' ? JSON.stringify(json[k]) : json[k])
                 );
             })
             .join('&');

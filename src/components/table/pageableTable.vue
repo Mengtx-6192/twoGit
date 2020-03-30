@@ -81,6 +81,8 @@
                 <el-table-column
                     v-else-if="item.type === 'selection'"
                     type="selection"
+                    :selectable="selectable"
+                    :disabled="item.disabled"
                     width="55"
                     :key="index"
                 ></el-table-column>
@@ -386,7 +388,7 @@ export default {
         return {
             customColumnVisible: false,
             innerNoDataText: '',
-            totalCount: 0,
+            totalCount: this.total || 0,
             innerPageSize: this.pageSize,
             innerPageNumber: this.pageNumber,
             tableData: this.localData || [],
@@ -397,6 +399,7 @@ export default {
     },
 
     mounted() {
+        this.$emit('on-table-mounted');
         if (!this.manualLoad && !this.localData) {
             this._reload();
         }
@@ -446,6 +449,9 @@ export default {
     },
 
     methods: {
+        selectable(row, index) {
+            return row.selectable !== false ? true : false;
+        },
         getCustomCellInstance(columnName, rowIndex, columnIndex) {
             let refs = this.$refs.table.$children[columnIndex].$refs;
             if (refs) {
@@ -554,7 +560,7 @@ export default {
             this.$emit('expand-change', row, expanded);
         },
         _reload(p) {
-            var params = _.assign({}, this.params, p);
+            let params = _.assign({}, this.params, p);
 
             this.innerNoDataText = '<span>数据加载中...</span>';
             this.tableData = [];
@@ -602,7 +608,7 @@ export default {
                             if (this.isDestroyed) {
                                 return;
                             }
-                            var e = document.createEvent('MouseEvents');
+                            let e = document.createEvent('MouseEvents');
                             e.initEvent('scroll', true, true); // 这里的click可以换成你想触发的行为
                             this.$el.querySelector('.el-table__body').dispatchEvent(e);
                             const checkedList = _.filter(res.list, it => {

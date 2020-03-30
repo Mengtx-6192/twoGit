@@ -5,7 +5,7 @@
         @change="change"
         clearable
         :placeholder="getConfig('placeholder')"
-        ref="el-input"
+        ref="el-input "
     />
 </template>
 <script>
