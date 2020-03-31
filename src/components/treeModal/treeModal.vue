@@ -8,24 +8,26 @@
             class="filter-tree"
             v-if="treeObj.search"
         ></el-input>
-        <el-tree
-            ref="elTree"
-            :data="treeObj.treeData"
-            node-key="id"
-            check-strictly
-            :highlight-current="treeObj.highlightCurrent || true"
-            :show-checkbox="treeObj.showCheckbox"
-            :default-expand-all="treeObj.expandAll"
-            :default-expanded-keys="expandKeys"
-            :current-node-key="selectedNode"
-            :expand-on-click-node="false"
-            :props="treeObj.defaultProps"
-            :render-content="renderContent"
-            :filter-node-method="filterNode"
-            @current-change="handlerCurrentChange"
-            @node-click="nodeClick"
-        >
-        </el-tree>
+        <el-scrollbar class="tree-layout" :style="{ height: treeObj.height }">
+            <el-tree
+                ref="elTree"
+                :data="treeObj.treeData"
+                node-key="id"
+                check-strictly
+                :highlight-current="treeObj.highlightCurrent || true"
+                :show-checkbox="treeObj.showCheckbox"
+                :default-expand-all="treeObj.expandAll"
+                :default-expanded-keys="expandKeys"
+                :current-node-key="selectedNode"
+                :expand-on-click-node="false"
+                :props="treeObj.defaultProps"
+                :render-content="renderContent"
+                :filter-node-method="filterNode"
+                @current-change="handlerCurrentChange"
+                @node-click="nodeClick"
+            >
+            </el-tree>
+        </el-scrollbar>
     </div>
 </template>
 
@@ -46,14 +48,13 @@ export default {
                 return (
                     <span class="custom-tree-node" on-click={() => this.beforeClick(data, node)}>
                         <span class="tree-node-title" on-mouseenter={e => this.mouseEnterNodeTitle(e, data)}>
-                            <i on-class={data.children ? 'tree-icon tree-folder' : 'tree-icon tree-child'} />
+                            <i on-class={data.treeNodeType === 1 ? 'tree-icon tree-folder' : 'tree-icon tree-child'} />
                             {data.showTitleTip ? (
                                 <el-tooltip
                                     content={node.label}
                                     placement="bottom"
                                     hide-after={3000}
-                                    popper-class="tree-title-tooltip"
-                                >
+                                    popper-class="tree-title-tooltip">
                                     <span class="tree-name">{node.label}</span>
                                 </el-tooltip>
                             ) : (
@@ -63,7 +64,7 @@ export default {
                             )}
                         </span>
                         <span class="right-menu">
-                            {data.children && this.treeObj.menuList.length && (
+                            {data.treeNodeType === 1 && this.treeObj.menuList.length && (
                                 <el-dropdown trigger="click" on-command={title => this.onClickTreeBtn(title, data)}>
                                     <span class="el-dropdown-link">
                                         <i class="el-icon-more"></i>
@@ -107,7 +108,7 @@ export default {
             if (!value) {
                 return true;
             }
-            return data[this.defaultProps.label || 'label'].indexOf(value) !== -1;
+            return data[_.get(this.treeObj, 'defaultProps.label', 'label')].indexOf(value) !== -1;
         },
         nodeClick(data, node, event) {
             if (this.treeObj.folderNotClick && data.treeNodeType === 1) {
@@ -203,6 +204,22 @@ export default {
 
     .tree-name {
         vertical-align: middle;
+    }
+
+    .tree-layout {
+        height: 100%;
+
+        .el-scrollbar__wrap {
+            overflow-x: hidden;
+        }
+
+        .el-scrollbar__bar.is-horizontal {
+            display: none;
+        }
+    }
+
+    .el-tree > .el-tree-node {
+        min-width: 100%;
     }
 }
 
