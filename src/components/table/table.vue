@@ -306,9 +306,11 @@ export default {
                         return (
                             <div>
                                 {_.map(item.buttons, (it, btnIndex) => (
-                                    <span onClick={self.wrapperFunc(self.buttonClick, it.onClick, row, index, it)}>
+                                    <span
+                                        onClick={self.wrapperFunc(self.buttonClick, it.onClick, row, index, it)}
+                                        v-show={self.buttonShow(it.visibleExpression || it.visible, row)}
+                                    >
                                         <el-link
-                                            v-show={self.buttonShow(it.visibleExpression || it.visible, row)}
                                             type={it.type || 'default'}
                                             size={it.size || 'mini'}
                                             underline={it.underline || false}
@@ -317,9 +319,12 @@ export default {
                                         >
                                             {it.name}
                                         </el-link>
-                                        {btnIndex < item.buttons.length - 1 && (
-                                            <el-divider direction="vertical"></el-divider>
-                                        )}
+                                        {btnIndex < item.buttons.length - 1 &&
+                                            self.buttonShow(
+                                                item.buttons[btnIndex + 1].visibleExpression ||
+                                                    item.buttons[btnIndex + 1].visible,
+                                                row
+                                            ) && <el-divider direction="vertical"></el-divider>}
                                     </span>
                                 ))}
                             </div>
@@ -722,6 +727,11 @@ export default {
         .editable-table-item {
             width: 100% !important;
         }
+    }
+
+    .el-divider__text,
+    .el-link {
+        font-size: 12px;
     }
 }
 </style>
