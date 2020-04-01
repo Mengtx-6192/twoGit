@@ -110,12 +110,12 @@ a {
     color: #fff !important;
 }
 
-.el-tree--highlight-current .el-tree-node.is-current .tree-folder,
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content .tree-folder,
 .el-tree-node__content:hover .tree-folder {
     background-image: url(../images/treeFolder.png) !important;
 }
 
-.el-tree--highlight-current .el-tree-node.is-current .tree-child,
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content .tree-child,
 .el-tree-node__content:hover .tree-child {
     background-image: url(../images/treeData.png) !important;
 }
