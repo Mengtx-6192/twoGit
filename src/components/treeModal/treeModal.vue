@@ -54,13 +54,12 @@ export default {
                                     content={node.label}
                                     placement="bottom"
                                     hide-after={3000}
-                                    popper-class="tree-title-tooltip">
+                                    popper-class="tree-title-tooltip"
+                                >
                                     <span class="tree-name">{node.label}</span>
                                 </el-tooltip>
                             ) : (
-                                <span class="tree-name" velse>
-                                    {node.label}
-                                </span>
+                                <span class="tree-name">{node.label}</span>
                             )}
                         </span>
                         <span class="right-menu">
