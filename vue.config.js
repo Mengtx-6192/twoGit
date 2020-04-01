@@ -1,4 +1,4 @@
-// let dev = 'http://192.168.11.30:20064';
+let dev = 'http://192.168.11.30:20064';
 let local = 'http://192.168.2.232:8000';
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
         proxy: {
             // todo 配置跨域路径
             '/api': {
-                target: local,
+                target: dev,
                 changeOrigin: true,
                 ws: true,
                 pathRewrite: {
