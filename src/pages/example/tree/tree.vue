@@ -37,12 +37,15 @@ export default {
                 treeData: [
                     {
                         label: '一级 1',
+                        treeNodeType: 1,
                         children: [
                             {
                                 label: '二级 1-1',
+                                treeNodeType: 1,
                                 children: [
                                     {
-                                        label: '三级 1-1-1'
+                                        label: '三级 1-1-1',
+                                        treeNodeType: 2
                                     }
                                 ]
                             }
@@ -50,20 +53,25 @@ export default {
                     },
                     {
                         label: '一级 2',
+                        treeNodeType: 1,
                         children: [
                             {
                                 label: '二级 2-1',
+                                treeNodeType: 1,
                                 children: [
                                     {
-                                        label: '三级 2-1-1'
+                                        label: '三级 2-1-1',
+                                        treeNodeType: 2
                                     }
                                 ]
                             },
                             {
                                 label: '二级 2-2',
+                                treeNodeType: 1,
                                 children: [
                                     {
-                                        label: '三级 2-2-1'
+                                        label: '三级 2-2-1',
+                                        treeNodeType: 2
                                     }
                                 ]
                             }
@@ -71,20 +79,25 @@ export default {
                     },
                     {
                         label: '一级 3',
+                        treeNodeType: 1,
                         children: [
                             {
                                 label: '二级 3-1',
+                                treeNodeType: 1,
                                 children: [
                                     {
-                                        label: '三级 3-1-1'
+                                        label: '三级 3-1-1',
+                                        treeNodeType: 2
                                     }
                                 ]
                             },
                             {
                                 label: '二级 3-2',
+                                treeNodeType: 1,
                                 children: [
                                     {
-                                        label: '三级 3-2-1'
+                                        label: '三级 3-2-1',
+                                        treeNodeType: 2
                                     }
                                 ]
                             }
@@ -110,7 +123,14 @@ export default {
                         title: '删除',
                         event: 'delete'
                     }
-                ]
+                ],
+                rightRender: (data, node, store) => {
+                    return (
+                        data.treeNodeType === 2 && (
+                            <i class="el-icon-close" vOn:click_capture_stop={() => this.deleteModel(data)}></i>
+                        )
+                    );
+                }
             }
         };
     },
@@ -130,6 +150,9 @@ export default {
             console.log('todo click edit');
         },
         delete() {
+            console.log('todo click delete');
+        },
+        deleteModel() {
             console.log('todo click delete');
         },
         initEvent() {
