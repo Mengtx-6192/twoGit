@@ -25,4 +25,8 @@
         }
     }
 }
+
+.el-menu {
+    border-right: none !important;
+}
 </style>

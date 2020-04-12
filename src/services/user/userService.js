@@ -1,18 +1,13 @@
-import Service from '../service';
-import Vue from 'vue';
+import service from '../service';
 const qs = require('qs');
 
-class UserService extends Service {
+const api = {
     login(params) {
-        return this.post('/rdp-auth/oauth/token', qs.stringify(params), {
+        return service.post('/rdp-auth/oauth/token', qs.stringify(params), {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Authorization: Vue.$config.tokenAuthorization
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
     }
-    refreshToken(params) {
-        return this.post('/rdp-auth/oauth/token');
-    }
 }
-export default UserService;
+export default api;

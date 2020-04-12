@@ -1,10 +1,7 @@
-import Vue from 'vue';
 import Router from 'vue-router';
 import pages from '@/pages';
-import common from '../pages/common';
+import views from '@/views';
 import store from '../store/index';
-
-Vue.use(Router);
 
 /**
  * 重写路由的push方法
@@ -27,7 +24,7 @@ const loadRoutes = (rous, paths, children) => {
             if (rous.path) {
                 rous.path = (filePs ? '/' : '') + filePs + (rous.path[0] === '/' ? '' : '/') + rous.path;
             } else {
-                rous.path = filePs + '.html';
+                rous.path = filePs;
             }
         }
         rous.name = _.concat(ps, [rous.name]).join('.');
@@ -53,9 +50,9 @@ const loadRoutes = (rous, paths, children) => {
 };
 
 export function createRouter() {
-    let routes = _.flattenDeep(loadRoutes(pages));
+    let routes = _.flattenDeep(loadRoutes(views));
 
-    routes = routes.concat(common);
+    routes = routes.concat(pages);
 
     const router = new Router({
         mode: 'history',
@@ -76,7 +73,7 @@ export function createRouter() {
         const isLogin = store.state.user.isLogin || false;
 
         if (meta.authPass !== false && !isLogin && to.name !== 'login') {
-            return next('/login.html');
+            return next('/login');
         }
         next();
     });

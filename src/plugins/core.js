@@ -1,15 +1,16 @@
 /**
  * 插件
  */
-import vueRouter from 'vue-router';
+import Router from 'vue-router';
 import Promise from 'promise-polyfill';
 import components from '@/components';
-import userService from '@/services/user/userService';
+import { userService } from '@/services/user';
 import elementUi, { Message, Loading, MessageBox } from 'element-ui';
 import axios from 'axios';
-import config from '@/config';
+import config from '@/assets/utils/config';
 import store from '@/store';
 
+const isProduction = ['production', 'prod'].includes(process.env.NODE_ENV);
 const jwt = require('jsonwebtoken');
 let loading;
 let requests = [];
@@ -54,9 +55,7 @@ export default {
     },
 
     refreshTokenInfo() {
-        this.userService = new userService();
-
-        return this.userService.login({
+        return userService.login({
             refresh_token: localStorage.getItem('refreshToken') || '',
             grant_type: 'refresh_token',
             scope: 'all'
@@ -69,7 +68,7 @@ export default {
             type: 'warning'
         }).then(() => {
             store.dispatch('user/clearAccountInfo');
-            Vue.$router.push({ path: '/login.html' });
+            Vue.$router.push({ path: '/login' });
         });
 
         return Promise.reject({});
@@ -80,10 +79,13 @@ export default {
         // 加载核心组件
         this.loadGlobalComponents(Vue);
 
-        Vue.use(elementUi);
-
-        // 加载核心插件
-        Vue.use(vueRouter);
+        if (isProduction) {
+            Vue.prototype.$ELEMENT = { size: 'small' };
+        } else {
+            Vue.use(elementUi, { size: 'small' });
+            // 加载核心插件
+            Vue.use(Router);
+        }
 
         // 附加Vue原型属性
         Vue.prop('config', config[process.env.NODE_ENV]);
@@ -193,7 +195,7 @@ export default {
                     // 对响应错误做点什么
                     if (error.response.status === 401) {
                         Message.error('登录状态信息过期,请重新登录');
-                        Vue.$router.push({ path: '/login.html' });
+                        Vue.$router.push({ path: '/login' });
                     }
                 }
                 // Message.error('接口异常');

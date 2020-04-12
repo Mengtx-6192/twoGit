@@ -1,164 +1,218 @@
 <template>
-    <div class="layout" :class="{ 'no-header': noHeader }">
-        <layout-header :noHeader="noHeader"></layout-header>
-        <div class="layout-page">
-            <template v-if="menu.menuList.length">
-                <div class="layout-menu">
-                    <el-menu :default-active="activeName" @select="open" class="el-menu-vertical-demo">
-                        <template v-for="item in menu.menuList">
-                            <el-submenu :key="item.id" :index="item.id" v-if="item.children">
-                                <template slot="title">
-                                    <i :class="item.icon" v-if="item.icon"></i>
-                                    <img :src="item.img" v-else />
-                                    <span>{{ item.name }}</span>
-                                </template>
-                                <template>
-                                    <el-menu-item v-for="child in item.children" :key="child.id" :index="child.id">
-                                        <i :class="child.icon" v-if="child.icon"></i>
-                                        <img :src="child.img" v-else />
-                                        <span>{{ child.name }}</span>
-                                    </el-menu-item>
-                                </template>
-                            </el-submenu>
-                            <el-menu-item :index="item.id" v-else :key="item.id">
-                                <i :class="item.icon" v-if="item.icon"></i>
-                                <img :src="item.img" v-else />
-                                <span slot="title">{{ item.name }}</span>
-                            </el-menu-item>
-                        </template>
-                    </el-menu>
+    <div class="app-main">
+        <header class="top">
+            <div class="logo">工程营建管理系统</div>
+            <top-menu class="menus"></top-menu>
+            <div class="functions-user">
+                <choose-color class="drop-color"></choose-color>
+                <el-dropdown class="drop-lang" @command="changeLang">
+                    <span class="el-dropdown-link">
+                        {{ $t('common.home') }}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="zh">简体中文</el-dropdown-item>
+                        <el-dropdown-item command="en">English</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <el-tooltip class="item" effect="light" content="全屏" placement="bottom-end">
+                    <screen-full></screen-full>
+                </el-tooltip>
+                <message></message>
+                <user></user>
+            </div>
+        </header>
+
+        <div class="main">
+            <sideBar></sideBar>
+
+            <div class="right-panel">
+                <div class="router">
+                    <pages-tab v-if="showPageTab" :urlQuery="urlQuery"></pages-tab>
+                    <transition name="fade-transform" mode="out-in">
+                        <router-view :key="$route.name" />
+                    </transition>
                 </div>
-                <div class="layout-content" :style="{ padding: `0 ${gap}px ${gap}px ${gap}px` }">
-                    <router-view></router-view>
-                </div>
-            </template>
-            <template v-else>
-                <router-view></router-view>
-            </template>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import topMenu from './components/topMenu';
+import tagsView from './components/tagsView';
+import user from './components/user';
+import screenFull from './components/screenful';
+import sideBar from './components/sideBar/sideBar';
+import chooseColor from './components/chooseColor';
+import pagesTab from './components/pagesTab';
+import { globalService } from '@/services/global';
+import message from './components/message';
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+
 export default {
     name: 'layoutPage',
-    props: {
-        noHeader: Boolean,
-        menu: Object,
-        gap: {
-            type: Number,
-            default: 20
-        }
-    },
+    components: { screenFull, user, topMenu, sideBar, chooseColor, pagesTab, message },
     data() {
         return {
-            $menuList: [],
-            activeName: this.menu.activeName
+            urlQuery: {},
+            showPageTab: false
         };
     },
     created() {
-        this.$menuList = this.deepList(this.menu.menuList);
-        this.render(_.get(this.$router, 'history.current'));
+        const $codeCollection = JSON.parse(localStorage.getItem('$codeCollection'));
+        const $detailMap = JSON.parse(localStorage.getItem('$detailMap'));
+        let socket = new SockJS('/api/rdp-message/stomp-websocket');
+        let stompClient = Stomp.over(socket);
+        let headers = {
+            'r-auth': localStorage.getItem('r-auth')
+        };
+
+        this.watchUrlCallback();
+
+        if ($codeCollection && $detailMap) {
+            window.$codeCollection = $codeCollection;
+            window.$detailMap = $detailMap;
+        } else {
+            this.getAllCode();
+        }
+
+        stompClient.connect(headers, frame => {
+            stompClient.subscribe('/topic/sendTopic', message => {
+                this.$message.info('收到新消息了');
+            });
+        });
     },
     watch: {
-        $route(newRoute) {
-            this.render(newRoute);
+        $route(nv, ov) {
+            this.watchUrlCallback(nv);
         }
     },
     methods: {
-        render(to) {
-            let path = to.path;
-            let menu = _.find(this.$menuList, menu => menu.url === path);
-
-            if (menu) {
-                this.activeName = menu.id;
+        watchUrlCallback() {
+            let route = this.$route;
+            if (route.path.startsWith('/flowTask')) {
+                this.showPageTab = true;
+                // this.urlQuery = nv.query
+            } else {
+                this.showPageTab = false;
             }
         },
-        open(menuId) {
-            let menu = _.find(this.$menuList, menu => menu.id === menuId);
-
-            if (menu) {
-                this.$router.push(menu.url);
-            }
+        async changeLang(val) {
+            this.$i18n.locale = val;
+            const res1 = await globalService.i18nList({ i18n: val });
+            console.log('i18n', res1);
+            const res = await globalService.i18nMessage({ i18n_message: val });
+            console.log('i18n_message', res);
         },
-        deepList(purviews) {
-            let purs = [];
-
-            _.each(purviews, pur => {
-                let children = pur.children;
-
-                purs.push(pur);
-                if (children && children.length) {
-                    let subs = this.deepList(children);
-
-                    _.each(subs, s => {
-                        s.pMenu = pur;
-                    });
-                    purs = purs.concat(...subs);
-                }
+        getAllCode() {
+            globalService.codeList().then(res => {
+                const { $codeCollection, $detailMap } = this.formatData(res.data);
+                localStorage.setItem('$codeCollection', JSON.stringify($codeCollection));
+                localStorage.setItem('$detailMap', JSON.stringify($detailMap));
+                window.$codeCollection = $codeCollection;
+                window.$detailMap = $detailMap;
             });
-            return purs;
+        },
+        formatData(arr) {
+            const res = [];
+            let obj = {};
+            let detailMap = {};
+
+            function recursion(arr) {
+                arr.forEach(it => {
+                    const code = it.dictKey;
+                    detailMap[code] = it.dictValue;
+                    if (it.children) {
+                        res.push(it);
+                        recursion(it.children);
+                    }
+                });
+            }
+
+            recursion(arr);
+            res.forEach(v => {
+                const key = v.dictKey;
+                obj[key] = v.children.map(it => {
+                    const code = it.dictKey;
+                    detailMap[code] = it.dictValue;
+                    return {
+                        label: it.dictValue,
+                        id: it.dictKey
+                    };
+                });
+            });
+            return {
+                $codeCollection: obj,
+                $detailMap: detailMap
+            };
         }
     }
 };
 </script>
 
-<style lang="scss">
-.layout {
-    display: grid;
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 1fr;
-    user-select: none;
-    overflow: hidden;
-    background: #f5f7f9;
-    z-index: 1;
-
-    &.no-header {
-        grid-template-rows: 1fr;
-        grid-template-columns: 1fr;
-    }
-}
-
-.layout-page {
-    overflow: hidden;
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: auto;
-    grid-template-areas: 'tools' 'breadcrumbs' 'layout-content'; /* stylelint-disable-line */
+<style lang="scss" scoped>
+.app-main {
+    background-color: #f2f3fa;
+    height: 100%;
     display: flex;
+    flex-direction: column;
 
-    .layout-menu {
-        width: 200px;
-        height: calc(100vh - 60px);
-
-        > .el-menu {
-            border-right: 1px solid #deeaff;
-        }
-
-        .el-menu {
+    header.top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+            padding: 0 30px;
+            background-color: #2d8cf0;
+            color: #fff;
+            line-height: 46px;
             height: 100%;
-            background: #f9faff;
-
-            .el-menu-item.is-active {
-                border-right: 2px solid #4f53e7;
-                background: #f0f3ff;
-            }
+            font-size: 16px;
         }
-
-        .el-menu-item,
-        .el-submenu {
-            text-align: left;
-            img {
-                width: 18px;
-                height: 18px;
-                margin-right: 8px;
-            }
+        .functions-user {
+            // width: 140px;
+            padding-right: 30px;
+            display: flex;
+            justify-content: flex-end;
+            height: 100%;
+            background-color: #2d9afe;
+            line-height: 45px;
+        }
+        .drop-color {
+            line-height: 43px;
+            margin-right: 10px;
+        }
+        .drop-lang {
+            margin-right: 10px;
+            color: #fff;
+        }
+        .menus {
+            flex: 1;
         }
     }
 
-    .layout-content {
+    .main {
         overflow: hidden;
         flex: 1;
-        background: #fff;
+        .right-panel {
+            background-color: #fff;
+            height: 100%;
+            .router {
+                background: #f2f3fa;
+                padding: 10px 14px;
+                position: relative;
+                height: calc(100% - 20px);
+                overflow: hidden scroll;
+                .router-view-page {
+                    min-height: calc(100% - 20px);
+                    background-color: #fff;
+                    border-radius: 6px;
+                    padding: 10px;
+                    box-shadow: 0px 2px 6px rgba(38, 46, 56, 0.1);
+                }
+            }
+        }
     }
 }
 </style>

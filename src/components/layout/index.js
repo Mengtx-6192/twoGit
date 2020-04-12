@@ -1,5 +1,5 @@
-import LayoutPage from './layoutPage';
+import Layout from './layoutPage';
 
 export default {
-    LayoutPage
+    Layout
 };
