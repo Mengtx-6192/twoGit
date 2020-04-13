@@ -7,7 +7,7 @@ const config = {
     clientId: 'flow',
     clientSecret: 'flow_secret',
     themeColor: '#409EFF',
-    customBg: ['.top-menu-wrap ul, .hamburger-wrap, .logo'],
+    customBg: ['.top-menu-wrap ul', '.hamburger-wrap', '.logo'],
     customColor: []
 };
 
