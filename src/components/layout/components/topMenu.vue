@@ -180,7 +180,7 @@ export default {
 .more-menu {
     height: 46px;
     line-height: 46px;
-    background: #2d9afe !important;
+    background: var(--theme-color) !important;
     color: #fff !important;
     padding: 0 10px;
     width: 60px;
