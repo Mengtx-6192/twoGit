@@ -10,6 +10,7 @@ import axios from 'axios';
 import config from '@/assets/utils/config';
 import store from '@/store';
 
+const Base64 = require('js-base64').Base64;
 const isProduction = ['production', 'prod'].includes(process.env.NODE_ENV);
 const jwt = require('jsonwebtoken');
 let loading;
@@ -94,7 +95,9 @@ export default {
         axios.defaults.baseURL = Vue.$config.axiosBaseUrl;
         axios.defaults.responseType = Vue.$config.axiosResponseType;
         axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        axios.defaults.headers.common['Authorization'] = Vue.$config.tokenAuthorization;
+        axios.defaults.headers.common['Authorization'] = `Basic ${Base64.encode(
+            `${Vue.$config.clientId}:${Vue.$config.clientSecret}`
+        )}`;
         axios.defaults.timeout = 10000;
         axios.defaults.withCredentials = true;
 

@@ -170,6 +170,7 @@ export default {
 .tree-page {
     display: flex;
     background: #fff;
+    height: 100%;
 
     .cont {
         width: 100%;

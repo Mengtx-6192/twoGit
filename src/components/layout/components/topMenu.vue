@@ -38,6 +38,7 @@
 import { menu } from '@/router/tempoaryMenus';
 import hamburger from './hamburger';
 import { mapMutations, mapGetters } from 'vuex';
+import { globalService } from '@/services/global';
 export default {
     name: 'topMenu',
     components: { hamburger },
@@ -58,7 +59,6 @@ export default {
         window.removeEventListener('resize', this.handleToggleMenu);
     },
     created() {
-        this.setMenuList(menu);
         const currentMenu = this.currentMenus;
         if (currentMenu) {
             this.activeTopMenu = currentMenu.id;
@@ -73,9 +73,28 @@ export default {
     },
     methods: {
         ...mapMutations('log', ['menuClicked', 'setMenuList']),
+        getMenus() {
+            globalService.getMenus().then(res => {
+                const data = res.roleMenuOperateVOList[0];
+                const menuList = data && data.menuDTOList;
+
+                if (menuList) {
+                    this.formatMenuData(menuList);
+                    this.setMenuList(menuList);
+                }
+                if (!this.currentMenus) {
+                    // 如果之前未登陆过, 则不会保留上次登陆的菜单, 默认定向到工作台
+                    const defaultMenu = menuList[0];
+
+                    this.activeTopMenu = defaultMenu.id;
+                    this.menuClicked(defaultMenu.id);
+                }
+            });
+        },
         handleSelect(key, keyPath) {
             const id = keyPath[0];
-            this.MENU_CLICKED(id);
+
+            this.menuClicked(id);
             if (this.currentMenus.children) {
                 const firstChild = this.currentMenus.children[0];
                 if (firstChild) {
@@ -96,6 +115,15 @@ export default {
                         this.hideMenusIndex = index;
                     }
                 });
+            });
+        },
+        formatMenuData(arr) {
+            arr.forEach(it => {
+                if (it.children && it.children.length && !it.children.uri) {
+                    this.formatMenuData(it.children);
+                } else {
+                    delete it.children;
+                }
             });
         }
     }

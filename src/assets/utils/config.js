@@ -1,14 +1,24 @@
+import loginBg from '@/assets/images/logo.png';
+const config = {
+    projectName: '***管理系统',
+    loginBg: loginBg,
+    historyMode: 'history',
+    axiosResponseType: 'json',
+    clientId: 'flow',
+    clientSecret: 'flow_secret'
+};
+
 export default {
-    development: {
-        historyMode: 'history',
-        axiosBaseUrl: '/',
-        axiosResponseType: 'json',
-        tokenAuthorization: 'Basic c3dvcmQ6c3dvcmRfc2VjcmV0'
-    },
-    production: {
-        historyMode: 'history',
-        axiosBaseUrl: '',
-        axiosResponseType: 'json',
-        tokenAuthorization: 'Basic c3dvcmQ6c3dvcmRfc2VjcmV0'
-    }
+    development: Object.assign(
+        {
+            axiosBaseUrl: '/'
+        },
+        config
+    ),
+    production: Object.assign(
+        {
+            axiosBaseUrl: ''
+        },
+        config
+    )
 };

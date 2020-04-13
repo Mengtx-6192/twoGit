@@ -11,7 +11,8 @@ const cdn = {
         'https://cdn.bootcss.com/vue-router/3.0.3/vue-router.js',
         'https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
-        'https://unpkg.com/element-ui/lib/index.js'
+        'https://unpkg.com/element-ui/lib/index.js',
+        'https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js'
     ]
 };
 const local = 'http://192.168.2.242:8000';
@@ -71,7 +72,8 @@ module.exports = {
                 'vue-router': 'VueRouter',
                 'element-ui': 'ELEMENT',
                 vuex: 'Vuex',
-                axios: 'axios'
+                axios: 'axios',
+                lodash: 'lodash'
             };
             const plugins = [];
             plugins.push(

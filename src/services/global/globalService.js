@@ -9,6 +9,10 @@ const api = {
     },
     i18nMessage(data) {
         return service.get('/rdp-system/i18n_message/list', data);
+    },
+    // 用户菜单
+    getMenus() {
+        return service.post('/rdp-user/user/queryUserRoleMenuOperate')
     }
 };
 export default api;

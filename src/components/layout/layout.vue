@@ -1,7 +1,7 @@
 <template>
     <div class="app-main">
         <header class="top">
-            <div class="logo">工程营建管理系统</div>
+            <div class="logo">{{ titie }}</div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
                 <choose-color class="drop-color"></choose-color>
@@ -55,6 +55,7 @@ export default {
     components: { screenFull, user, topMenu, sideBar, chooseColor, pagesTab, message },
     data() {
         return {
+            titie: Vue.$config.projectName,
             urlQuery: {},
             showPageTab: false
         };
@@ -93,7 +94,6 @@ export default {
             let route = this.$route;
             if (route.path.startsWith('/flowTask')) {
                 this.showPageTab = true;
-                // this.urlQuery = nv.query
             } else {
                 this.showPageTab = false;
             }
@@ -197,7 +197,7 @@ export default {
         flex: 1;
         .right-panel {
             background-color: #fff;
-            height: 100%;
+            height: calc(100vh - 46px);
             .router {
                 background: #f2f3fa;
                 padding: 10px 14px;

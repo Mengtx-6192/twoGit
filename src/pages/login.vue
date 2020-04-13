@@ -9,10 +9,10 @@
             label-position="left"
         >
             <div class="logo">
-                <img src="@/assets/images/logo.png" />
+                <img :src="loginBg" />
             </div>
             <div class="title-container">
-                <h3 class="title">流程图管理系统</h3>
+                <h3 class="title">{{ title }}</h3>
             </div>
 
             <el-form-item prop="username">
@@ -81,6 +81,8 @@ export default {
             }
         };
         return {
+            loginBg: Vue.$config.loginBg,
+            title: Vue.$config.projectName,
             loginForm: {
                 username: '',
                 password: ''
