@@ -27,7 +27,7 @@
                     :key="hideItem.id"
                     v-show="index >= hideMenusIndex"
                 >
-                    {{ hideItem.title }}
+                    {{ hideItem.name }}
                 </el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
