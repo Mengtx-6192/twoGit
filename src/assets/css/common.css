@@ -13,6 +13,11 @@ li {
     padding: 0;
 }
 
+div, h1, h2, h3, h4, h5, h6, header, li, p, section, ul {
+    margin: 0;
+    padding: 0;
+}
+
 a {
     color: #2c98fb;
     background: 0 0;
