@@ -11,7 +11,7 @@ const service = {
     },
     errHandler(err, { errHandler = true }) {
         if (errHandler) {
-            Message.error(err.message);
+            Message.error(err.message || '接口调用异常');
         }
 
         return Promise.reject(err);

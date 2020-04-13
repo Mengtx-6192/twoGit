@@ -148,6 +148,7 @@ export default {
                                 })
                                 .catch(res => {
                                     // console.error('refresh token error: ', res);
+                                    this.endLoading();
                                 });
                         }
                         const retryOriginalRequest = new Promise(resolve => {
@@ -193,6 +194,7 @@ export default {
                 return Promise.reject({ response });
             },
             error => {
+                debugger
                 this.endLoading();
                 if (error.response) {
                     // 对响应错误做点什么
