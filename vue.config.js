@@ -22,7 +22,6 @@ module.exports = {
     lintOnSave: false,
     assetsDir: 'assets',
     productionSourceMap: false,
-    transpileDependencies: ['@antv'],
     devServer: {
         host: '0.0.0.0',
         port: 8080,
