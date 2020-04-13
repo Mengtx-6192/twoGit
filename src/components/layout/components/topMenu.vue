@@ -49,10 +49,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters('log', ['menuList']),
-        currentMenus() {
-            return this.$store.getters['log/currentMenus'];
-        }
+        ...mapGetters('log', ['menuList', 'currentMenus'])
     },
     destroyed() {
         window.removeEventListener('resize', this.handleToggleMenu);
