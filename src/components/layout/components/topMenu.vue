@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import { menu } from '@/router/tempoaryMenus';
 import hamburger from './hamburger';
 import { mapMutations, mapGetters } from 'vuex';
 import { globalService } from '@/services/global';
