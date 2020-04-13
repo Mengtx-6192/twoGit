@@ -1,4 +1,4 @@
-import Layout from './layoutPage';
+import Layout from './layout';
 
 export default {
     Layout

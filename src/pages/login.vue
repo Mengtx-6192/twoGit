@@ -141,7 +141,7 @@ export default {
                         .then(ret => {
                             this.loading = false;
                             this.setAccountInfo(ret);
-                            let path = '/process/design/index';
+                            let path = '/example/tree';
                             if (vm.currentMenus) {
                                 if (vm.currentMenus.url) {
                                     path = vm.currentMenus.url;
