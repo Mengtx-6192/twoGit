@@ -164,7 +164,7 @@ export default {
         align-items: center;
         .logo {
             padding: 0 30px;
-            background-color: var(--theme-color);
+            background-color: #2d8cf0;
             color: #fff;
             line-height: 46px;
             height: 100%;
