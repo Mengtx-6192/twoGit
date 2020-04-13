@@ -20,6 +20,7 @@ export default {
                 pageable: false,
                 localData: [
                     {
+                        id: 1,
                         name: '张三',
                         sex: '1',
                         on: true,
@@ -38,7 +39,31 @@ export default {
                         rs: {
                             value: '2',
                             valueDisplay: '张三'
-                        }
+                        },
+                        children: [
+                            {
+                                id: '1-1',
+                                name: '张三',
+                                sex: '1',
+                                on: true,
+                                birth: '2018-01-21',
+                                address: {
+                                    add: '南京s可是发动机来说绿色减肥路上的空间离开手机发呆了市',
+                                    add_editableConfig: {
+                                        placeholder: 'xxx',
+                                        validator: [
+                                            function(rule, value, callback, obj, row) {
+                                                callback();
+                                            }
+                                        ]
+                                    }
+                                },
+                                rs: {
+                                    value: '2',
+                                    valueDisplay: '张三'
+                                }
+                            }
+                        ]
                     }
                 ],
                 border: true,
@@ -164,7 +189,13 @@ export default {
                             }
                         ]
                     }
-                ]
+                ],
+                rowKey: 'id',
+                defaultExpandAll: true,
+                treeProps: {
+                    children: 'children',
+                    hasChildren: 'hasChildren'
+                }
             }
         };
     },
