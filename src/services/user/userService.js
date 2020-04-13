@@ -6,7 +6,8 @@ const api = {
         return service.post('/rdp-auth/oauth/token', qs.stringify(params), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            },
+            errHandler: false
         });
     }
 }
