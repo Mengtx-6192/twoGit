@@ -33,9 +33,7 @@ const actions = {
         let rAuth = account.token_type + ' ' + account.access_token;
 
         localStorage.setItem('refreshToken', account.refresh_token);
-        commit('setAccountInfo', {
-            account: account.user_name
-        });
+        commit('setAccountInfo', account);
         commit('setLoginStatus', true);
         commit('setRAuth', rAuth);
     },
