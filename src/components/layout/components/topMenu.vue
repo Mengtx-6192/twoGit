@@ -164,16 +164,6 @@ export default {
         .el-icon-arrow-down {
             color: #fff;
         }
-
-        // .el-submenu__title {
-        //     height: 46px !important;
-        //     line-height: 46px !important;
-        //     color: #fff !important;
-        // }
-
-        // > .el-submenu .el-submenu__title:hover {
-        //     background: #ffffff38 !important;
-        // }
     }
 }
 
