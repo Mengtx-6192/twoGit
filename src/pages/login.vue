@@ -143,7 +143,7 @@ export default {
                         .then(ret => {
                             this.loading = false;
                             this.setAccountInfo(ret);
-                            let path = '/example/tree';
+                            let path = Vue.$config.home;
                             if (vm.currentMenus) {
                                 if (vm.currentMenus.url) {
                                     path = vm.currentMenus.url;
