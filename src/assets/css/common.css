@@ -18,16 +18,6 @@ div, h1, h2, h3, h4, h5, h6, header, li, p, section, ul {
     padding: 0;
 }
 
-a {
-    color: #2c98fb;
-    background: 0 0;
-    text-decoration: none;
-    outline: 0;
-    cursor: pointer;
-    -webkit-transition: color .2s ease;
-    transition: color .2s ease;
-}
-
 [class^="icon-rz-"], [class*=" icon-rz-"] {
     font-size: 16px;
 }
@@ -85,17 +75,6 @@ a {
 
 .tree-child {
     background-image: url(../images/data.png);
-}
-
-.el-tree--highlight-current .el-tree-node .el-tree-node__content:hover {
-    background-color: #2c98fb !important;
-    color: #fff;
-    opacity: 0.6;
-}
-
-.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
-    background-color: #2c98fb !important;
-    color: #fff !important;
 }
 
 .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content .tree-folder,

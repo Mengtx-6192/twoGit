@@ -5,7 +5,10 @@ const config = {
     historyMode: 'history',
     axiosResponseType: 'json',
     clientId: 'flow',
-    clientSecret: 'flow_secret'
+    clientSecret: 'flow_secret',
+    themeColor: '#409EFF',
+    customBg: ['.top-menu-wrap ul, .hamburger-wrap, .logo'],
+    customColor: []
 };
 
 export default {

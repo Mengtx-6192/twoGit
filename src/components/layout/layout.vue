@@ -164,7 +164,7 @@ export default {
         align-items: center;
         .logo {
             padding: 0 30px;
-            background-color: #2d8cf0;
+            background-color: var(--theme-color);
             color: #fff;
             line-height: 46px;
             height: 100%;
@@ -176,7 +176,7 @@ export default {
             display: flex;
             justify-content: flex-end;
             height: 100%;
-            background-color: #2d9afe;
+            background-color: var(--theme-color);
             line-height: 45px;
         }
         .drop-color {

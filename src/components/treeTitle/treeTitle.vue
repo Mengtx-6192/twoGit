@@ -69,7 +69,7 @@ export default {
     .ivu-poptip {
         margin-right: 24px;
         .ivu-poptip-rel .ivu-icon {
-            color: #2d97fb;
+            color: var(--theme-color);
             font-size: 20px;
         }
     }
@@ -78,7 +78,7 @@ export default {
 
         i {
             font-size: 20px;
-            color: #2d97fb;
+            color: var(--theme-color);
             margin-right: 24px;
         }
     }

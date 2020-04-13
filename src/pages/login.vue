@@ -8,7 +8,7 @@
             autocomplete="on"
             label-position="left"
         >
-            <div class="logo">
+            <div class="logo-icon">
                 <img :src="loginBg" />
             </div>
             <div class="title-container">
@@ -252,7 +252,7 @@ export default {
         padding: 0 50px;
         box-sizing: border-box;
 
-        .logo {
+        .logo-icon {
             width: 120px;
             height: 120px;
             background: #fff;

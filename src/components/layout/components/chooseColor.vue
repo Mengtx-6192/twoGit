@@ -4,24 +4,35 @@
 
 <script>
 const version = require('element-ui/package.json').version; // element-ui version from node_modules
-const ORIGINAL_THEME = '#409EFF'; // default color
 
 export default {
     data() {
         return {
             chalk: '', // content of theme-chalk css
-            theme: ORIGINAL_THEME
+            theme: Vue.$config.themeColor
         };
     },
     computed: {
         customBg() {
+            let classNames = Vue.$config.customBg;
+
             return color => {
-                return `.logo, .top-menu-wrap ul, .functions-user, .hamburger-wrap,.workflow-name, .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content, .el-tree--highlight-current .el-tree-node .el-tree-node__content:hover, .more-menu { background: ${color} !important }`;
+                if (classNames.length) {
+                    return `${Vue.$config.customBg.join(',')} { background: ${color} !important }`;
+                } else {
+                    return '';
+                }
             };
         },
         customColor() {
+            let classNames = Vue.$config.customColor;
+
             return color => {
-                return `.icon-rz-component, .tree-title .pop i, .flow-toolbar .command, .flow-toolbar .btns .el-link.el-link--default, .flow-toolbar .el-checkbox__input.is-checked + .el-checkbox__label { color: ${color} !important }`;
+                if (classNames.length) {
+                    return `${Vue.$config.customColor.join(',')} { color: ${color} !important }`;
+                } else {
+                    return '';
+                }
             };
         },
         removeCustom() {
@@ -40,7 +51,7 @@ export default {
             console.log(themeCluster, originalCluster);
             const getHandler = (variable, id) => {
                 return () => {
-                    const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''));
+                    const originalCluster = this.getThemeCluster(Vue.$config.themeColor.replace('#', ''));
                     const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster);
 
                     let styleTag = document.getElementById(id);
@@ -50,6 +61,8 @@ export default {
                         document.head.appendChild(styleTag);
                     }
                     let concat = newStyle + this.customBg(val) + this.customColor(val);
+
+                    this.setThemeColor(val);
                     styleTag.innerText = concat;
                 };
             };
@@ -80,8 +93,10 @@ export default {
             });
         }
     },
-
     methods: {
+        setThemeColor(color) {
+            document.getElementsByTagName('body')[0].style.setProperty('--theme-color', color);
+        },
         updateStyle(style, oldCluster, newCluster) {
             let newStyle = style;
             oldCluster.forEach((color, index) => {

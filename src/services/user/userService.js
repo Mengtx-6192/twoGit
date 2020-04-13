@@ -10,5 +10,6 @@ const api = {
             errHandler: false
         });
     }
-}
+};
+
 export default api;
