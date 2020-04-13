@@ -74,6 +74,10 @@ export default {
                 const data = _.get(res, 'data.roleMenuOperateVOList[0]', []);
                 const menuList = data && data.menuDTOList;
 
+                if (!menuList.length) {
+                    return;
+                }
+
                 if (menuList) {
                     this.formatMenuData(menuList);
                     this.setMenuList(menuList);
