@@ -15,7 +15,7 @@
                 class="top-menu-item"
                 v-show="index < hideMenusIndex || hideMenusIndex === -1"
             >
-                {{ item.title }}
+                {{ item.name }}
             </el-menu-item>
         </el-menu>
 
@@ -59,23 +59,20 @@ export default {
         window.removeEventListener('resize', this.handleToggleMenu);
     },
     created() {
+        this.getMenus();
         const currentMenu = this.currentMenus;
         if (currentMenu) {
             this.activeTopMenu = currentMenu.id;
         }
     },
     mounted() {
-        setTimeout(() => {
-            this.handleToggleMenu();
-        }, 100);
-
         window.addEventListener('resize', this.handleToggleMenu);
     },
     methods: {
         ...mapMutations('log', ['menuClicked', 'setMenuList']),
         getMenus() {
             globalService.getMenus().then(res => {
-                const data = res.roleMenuOperateVOList[0];
+                const data = _.get(res, 'data.roleMenuOperateVOList[0]', []);
                 const menuList = data && data.menuDTOList;
 
                 if (menuList) {
@@ -89,6 +86,8 @@ export default {
                     this.activeTopMenu = defaultMenu.id;
                     this.menuClicked(defaultMenu.id);
                 }
+
+                this.handleToggleMenu();
             });
         },
         handleSelect(key, keyPath) {

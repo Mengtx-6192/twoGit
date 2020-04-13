@@ -4,14 +4,14 @@
             <el-menu-item :index="item.id">
                 <i :class="item.icon" v-if="item.icon"></i>
                 <img :src="item.img" v-else />
-                <span slot="title">{{ item.title }}</span>
+                <span slot="title">{{ item.name }}</span>
             </el-menu-item>
         </template>
 
         <el-submenu v-else ref="subMenu" :index="item.id" popper-class="layout-sub-menu">
             <template slot="title">
                 <i class="el-icon-folder"></i>
-                <span v-if="$store.state.log.sideStatus" slot="title">{{ item.title }}</span>
+                <span v-if="$store.state.log.sideStatus" slot="title">{{ item.name }}</span>
             </template>
             <sidebar-item v-for="child in item.children" :key="child.id" :item="child" />
         </el-submenu>
