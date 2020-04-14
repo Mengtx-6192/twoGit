@@ -146,11 +146,13 @@ export default {
                                     // 执行完成后，清空队列
                                     requests = [];
                                 })
-                                .catch(res => {
+                                .catch(err => {
                                     // console.error('refresh token error: ', res);
+                                    Message.error('刷新token失败');
+                                    loadingNum = 1;
                                     this.endLoading();
 
-                                    return Promise.reject(res);
+                                    return Promise.reject(err);
                                 });
                         }
                         const retryOriginalRequest = new Promise(resolve => {
