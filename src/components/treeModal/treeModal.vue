@@ -52,14 +52,17 @@ export default {
                             {data.showTitleTip ? (
                                 <el-tooltip
                                     content={node.label}
-                                    placement="bottom"
-                                    hide-after={3000}
+                                    placement="bottom-start"
                                     popper-class="tree-title-tooltip"
                                 >
-                                    <span class="tree-name">{node.label}</span>
+                                    <div class="name-layout">
+                                        <span class="tree-name">{node.label}</span>
+                                    </div>
                                 </el-tooltip>
                             ) : (
-                                <span class="tree-name">{node.label}</span>
+                                <div class="name-layout">
+                                    <span class="tree-name">{node.label}</span>
+                                </div>
                             )}
                         </span>
                         <span class="right-menu">
@@ -133,11 +136,19 @@ export default {
 
         // 鼠标悬浮在树节点标题上
         mouseEnterNodeTitle({ target }, data) {
-            let status = target.scrollWidth > target.clientWidth;
+            target.children.forEach(item => {
+                if (item.className === 'name-layout') {
+                    item.children.forEach(child => {
+                        if (child.className === 'tree-name') {
+                            let status = child.offsetWidth > item.clientWidth;
 
-            if (status) {
-                Vue.set(data, 'showTitleTip', status);
-            }
+                            if (status) {
+                                Vue.set(data, 'showTitleTip', status);
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
 };
@@ -164,6 +175,12 @@ export default {
         flex: 1;
         overflow: hidden;
         text-align: left;
+
+        .name-layout {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 
     .el-tree-node__content {
@@ -198,7 +215,8 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        display: block;
+        display: flex;
+        align-items: center;
     }
 
     .tree-name {
@@ -224,5 +242,7 @@ export default {
 
 .tree-title-tooltip {
     opacity: 0.8 !important;
+    max-width: 700px;
+    line-height: 24px;
 }
 </style>

@@ -55,5 +55,6 @@ a {
 .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
     background-color: var(--theme-color) !important;
     color: #fff !important;
+    opacity: 1;
 }
 </style>
