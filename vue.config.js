@@ -46,12 +46,6 @@ module.exports = {
         sockHost: 'http://127.0.0.1:8080'
     },
     parallel: require('os').cpus().length > 1,
-    css: {
-        extract: true,
-        sourceMap: false,
-        loaderOptions: {},
-        requireModuleExtension: true
-    },
     chainWebpack: config => {
         config.optimization.splitChunks({
             chunks: 'all'
@@ -74,6 +68,7 @@ module.exports = {
                 axios: 'axios',
                 lodash: 'lodash'
             };
+
             const plugins = [];
             plugins.push(
                 new UglifyJsPlugin({
