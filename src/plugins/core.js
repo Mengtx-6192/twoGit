@@ -149,6 +149,8 @@ export default {
                                 .catch(res => {
                                     // console.error('refresh token error: ', res);
                                     this.endLoading();
+
+                                    return Promise.reject(res);
                                 });
                         }
                         const retryOriginalRequest = new Promise(resolve => {
