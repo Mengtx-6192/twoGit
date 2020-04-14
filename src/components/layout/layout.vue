@@ -186,7 +186,7 @@ export default {
             line-height: 35px;
         }
         .drop-color {
-            line-height: 43px;
+            line-height: 34px;
             margin-right: 10px;
         }
         .drop-lang {
