@@ -15,6 +15,7 @@
                 class="top-menu-item"
                 v-show="index < hideMenusIndex || hideMenusIndex === -1"
             >
+                <i :class="item.icon" v-if="item.icon" />
                 {{ item.name }}
             </el-menu-item>
         </el-menu>
