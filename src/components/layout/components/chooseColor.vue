@@ -100,6 +100,7 @@ export default {
     },
     methods: {
         setThemeColor(color) {
+            Vue.$config.themeColor = color;
             document.getElementsByTagName('body')[0].style.setProperty('--theme-color', color);
         },
         updateStyle(style, oldCluster, newCluster) {

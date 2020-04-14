@@ -177,13 +177,14 @@ export default {
             }
         }
         .functions-user {
-            // width: 140px;
             padding-right: 30px;
             display: flex;
             justify-content: flex-end;
             height: 100%;
             background-color: var(--theme-color);
             line-height: 35px;
+            border-left: 1px solid #052A51;
+            padding-left: 10px;
         }
         .drop-color {
             line-height: 34px;
@@ -203,7 +204,7 @@ export default {
         flex: 1;
         .right-panel {
             background-color: #fff;
-            height: calc(100vh - 46px);
+            height: calc(100vh - 36px);
             .router {
                 background: #f2f3fa;
                 padding: 20px;

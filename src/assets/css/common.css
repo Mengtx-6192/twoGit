@@ -27,7 +27,7 @@ div, h1, h2, h3, h4, h5, h6, header, li, p, section, ul {
 }
 
 .el-table thead {
-    color: #1F2743;
+    color: #1F2743 !important;
 }
 
 /* 兼容safari input 光标不居中 */
