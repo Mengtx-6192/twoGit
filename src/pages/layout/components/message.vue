@@ -121,6 +121,7 @@ export default {
 
 <style lang="scss">
 .message {
+    cursor: pointer;
     .icon-rz-message {
         color: #fff;
     }
