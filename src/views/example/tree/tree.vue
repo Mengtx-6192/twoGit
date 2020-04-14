@@ -104,7 +104,7 @@ export default {
                         ]
                     }
                 ],
-                height: 'calc(100vh - 162px)',
+                height: 'calc(100% - 105px)',
                 search: true,
                 expandAll: false,
                 showCheckbox: false,

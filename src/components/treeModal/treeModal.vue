@@ -158,7 +158,7 @@ export default {
 .tree-modal {
     width: 240px;
     border-right: 1px solid #deeaff;
-    height: calc(100vh - 60px);
+    height: 100%;
     padding: 0 10px;
     box-sizing: border-box;
 }

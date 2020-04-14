@@ -1,7 +1,7 @@
 <template>
     <div class="app-main">
         <header class="top">
-            <div class="logo">{{ titie }}</div>
+            <div class="logo"><img :src="logoSmall" v-if="logoSmall" />{{ titie }}</div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
                 <choose-color class="drop-color"></choose-color>
@@ -56,6 +56,7 @@ export default {
     data() {
         return {
             titie: Vue.$config.projectName,
+            logo: Vue.$config.logo,
             urlQuery: {},
             showPageTab: false
         };
@@ -164,11 +165,16 @@ export default {
         align-items: center;
         .logo {
             padding: 0 30px;
-            background-color: #2d8cf0;
+            background-color: var(--theme-color);
             color: #fff;
             line-height: 46px;
             height: 100%;
             font-size: 16px;
+
+            img {
+                width: 18px;
+                height: 18px;
+            }
         }
         .functions-user {
             // width: 140px;
@@ -200,9 +206,9 @@ export default {
             height: calc(100vh - 46px);
             .router {
                 background: #f2f3fa;
-                padding: 10px 14px;
+                padding: 20px;
                 position: relative;
-                height: calc(100% - 20px);
+                height: calc(100% - 40px);
                 overflow: hidden scroll;
                 .router-view-page {
                     min-height: calc(100% - 20px);

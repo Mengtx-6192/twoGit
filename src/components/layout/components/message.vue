@@ -74,12 +74,13 @@ export default {
     margin: 0 10px;
 
     .el-badge__content {
-        background: #1f2743;
+        background: #1989fa;
         height: 14px;
         line-height: 14px;
         transform: scale(0.9) !important;
         right: -12px !important;
         top: 5px !important;
+        border: none !important;
     }
 }
 

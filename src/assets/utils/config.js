@@ -1,13 +1,15 @@
-import loginBg from '@/assets/images/logo.png';
+import logo from '@/assets/images/logo.png';
 const config = {
     projectName: '***管理系统',
-    loginBg: loginBg,
+    logo: logo,
+    logoSmall: '',
+    loginBg: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/rdp-cpm-fe/imags/login-bg.png',
     historyMode: 'history',
     axiosResponseType: 'json',
-    clientId: 'flow',
-    clientSecret: 'flow_secret',
-    themeColor: '#409EFF',
-    customBg: ['.top-menu-wrap ul', '.hamburger-wrap', '.logo'],
+    clientId: 'cpm',
+    clientSecret: 'pc_secret',
+    themeColor: '#0C3F72',
+    customBg: [],
     customColor: [],
     home: '/example/tree'
 };

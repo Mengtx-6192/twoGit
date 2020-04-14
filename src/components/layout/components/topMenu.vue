@@ -139,7 +139,7 @@ export default {
             box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
             padding-left: 20px;
             border: none;
-            background: linear-gradient(90deg, #2d8cf0 0%, #2d9afe 100%);
+            background: var(--theme-color);
             overflow: hidden;
             height: 46px;
 
@@ -156,7 +156,7 @@ export default {
                 &.is-active {
                     border: none;
                     color: #fff;
-                    background: #ffffff38;
+                    background: #052A51;
                 }
             }
         }

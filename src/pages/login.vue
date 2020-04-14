@@ -1,5 +1,5 @@
 <template>
-    <div class="login-container">
+    <div class="login-container" :style="{ 'background-image': `url(${this.loginBg})` }">
         <el-form
             ref="loginForm"
             :model="loginForm"
@@ -9,7 +9,7 @@
             label-position="left"
         >
             <div class="logo-icon">
-                <img :src="loginBg" />
+                <img :src="logo" />
             </div>
             <div class="title-container">
                 <h3 class="title">{{ title }}</h3>
@@ -81,6 +81,7 @@ export default {
             }
         };
         return {
+            logo: Vue.$config.logo,
             loginBg: Vue.$config.loginBg,
             title: Vue.$config.projectName,
             loginForm: {
@@ -236,7 +237,7 @@ export default {
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
-    background: url('https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/rdp-cpm-fe/imags/login-bg.png') no-repeat;
+    background-repeat: no-repeat;
     background-position: 0;
     background-size: 100%;
 
