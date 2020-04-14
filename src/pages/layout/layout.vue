@@ -14,7 +14,7 @@
                         <el-dropdown-item command="en">English</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-tooltip class="item" effect="light" content="全屏" placement="bottom-end">
+                <el-tooltip class="screen-full" effect="light" content="全屏" placement="bottom-end">
                     <screen-full></screen-full>
                 </el-tooltip>
                 <message></message>
@@ -183,19 +183,24 @@ export default {
             height: 100%;
             background-color: var(--theme-color);
             line-height: 35px;
-            border-left: 1px solid #052A51;
+            border-left: 1px solid #052a51;
             padding-left: 10px;
         }
         .drop-color {
             line-height: 34px;
             margin-right: 10px;
+            cursor: pointer;
         }
         .drop-lang {
             margin-right: 10px;
             color: #fff;
+            cursor: pointer;
         }
         .menus {
             flex: 1;
+        }
+        .screen-full {
+            cursor: pointer;
         }
     }
 

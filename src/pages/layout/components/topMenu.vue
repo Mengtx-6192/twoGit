@@ -156,7 +156,7 @@ export default {
                 &.is-active {
                     border: none;
                     color: #fff;
-                    background: #052A51;
+                    background: #052a51;
                 }
             }
         }

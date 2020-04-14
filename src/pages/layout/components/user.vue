@@ -7,6 +7,7 @@
                 </span>
                 <i v-else class="el-icon-user"></i>
                 {{ userInfo.nick_name }}
+                <i class="el-icon-caret-bottom" />
             </span>
 
             <el-dropdown-menu slot="dropdown">
@@ -45,8 +46,9 @@ export default {
 <style lang="scss" scoped>
 .user {
     margin-left: 20px;
+
     .user-name {
-        cursor: default;
+        cursor: pointer;
         color: #ffffff;
         font-size: 16px;
     }

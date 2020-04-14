@@ -1,7 +1,7 @@
 import child from './child';
 import tree from './tree';
 import table from './table';
-import layout from '@/components/layout/layout.vue';
+import layout from '@/pages/layout/layout.vue';
 
 export default {
     path: '/example',
