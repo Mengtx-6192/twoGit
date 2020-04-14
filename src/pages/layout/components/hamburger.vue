@@ -34,7 +34,7 @@ export default {
     .hamburger {
         color: #fff;
         font-size: 24px;
-        margin: 10px 0 0 20px;
+        margin: 6px 0 0 20px;
         cursor: pointer;
     }
 }

@@ -3,7 +3,7 @@
         <template v-if="!item.children">
             <el-menu-item :index="item.id">
                 <i :class="item.icon" v-if="item.icon"></i>
-                <img :src="item.img" v-else />
+                <img :src="item.img" v-else-if="item.img" />
                 <span slot="title">{{ item.name }}</span>
             </el-menu-item>
         </template>
