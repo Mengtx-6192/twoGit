@@ -23,7 +23,11 @@ div, h1, h2, h3, h4, h5, h6, header, li, p, section, ul {
 }
 
 .el-table th {
-    background: #f8faff !important;
+    background: #eceff3 !important;
+}
+
+.el-table thead {
+    color: #1F2743;
 }
 
 /* 兼容safari input 光标不居中 */

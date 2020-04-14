@@ -195,7 +195,8 @@ export default {
                 treeProps: {
                     children: 'children',
                     hasChildren: 'hasChildren'
-                }
+                },
+                size: 'mini'
             }
         };
     },

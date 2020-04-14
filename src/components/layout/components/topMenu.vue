@@ -141,12 +141,12 @@ export default {
             border: none;
             background: var(--theme-color);
             overflow: hidden;
-            height: 46px;
+            height: 36px;
 
             li.el-menu-item {
                 border: none;
-                line-height: 46px;
-                height: 46px;
+                line-height: 36px;
+                height: 36px;
                 padding: 0 14px;
 
                 &:hover {
@@ -168,8 +168,8 @@ export default {
 }
 
 .more-menu {
-    height: 46px;
-    line-height: 46px;
+    height: 36px;
+    line-height: 36px;
     background: var(--theme-color) !important;
     color: #fff !important;
     padding: 0 10px;

@@ -56,7 +56,7 @@ export default {
     data() {
         return {
             titie: Vue.$config.projectName,
-            logo: Vue.$config.logo,
+            logoSmall: Vue.$config.logoSmall,
             urlQuery: {},
             showPageTab: false
         };
@@ -167,7 +167,7 @@ export default {
             padding: 0 30px;
             background-color: var(--theme-color);
             color: #fff;
-            line-height: 46px;
+            line-height: 36px;
             height: 100%;
             font-size: 16px;
 
@@ -183,7 +183,7 @@ export default {
             justify-content: flex-end;
             height: 100%;
             background-color: var(--theme-color);
-            line-height: 45px;
+            line-height: 35px;
         }
         .drop-color {
             line-height: 43px;
