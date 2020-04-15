@@ -8,7 +8,7 @@ const cdn = {
     css: [],
     js: [
         'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/libs/vue.js/2.5.21/vue.min.js',
-        'https://cdn.bootcss.com/vue-router/3.0.3/vue-router.js',
+        'https://cdn.bootcss.com/vue-router/3.1.3/vue-router.js',
         'https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js',
         'https://cdn.bootcss.com/axios/0.19.0/axios.min.js',
         'https://unpkg.com/element-ui/lib/index.js',

@@ -5,10 +5,14 @@ import store from '../store/index';
 
 /**
  * 重写路由的push方法
+ * 解决，相同路由跳转时，报错
  */
-const routerPush = Router.prototype.push;
-Router.prototype.push = function push(location) {
-    return routerPush.call(this, location).catch(error => error);
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) {
+        return originalPush.call(this, location, onResolve, onReject);
+    }
+    return originalPush.call(this, location).catch(err => err);
 };
 
 const loadRoutes = (rous, paths, children) => {
@@ -69,7 +73,6 @@ export function createRouter() {
     // 路由权限控制
     router.beforeEach((to, from, next) => {
         const { meta } = to;
-
         const isLogin = store.state.user.isLogin || false;
 
         if (meta.authPass !== false && !isLogin && to.name !== 'login') {
