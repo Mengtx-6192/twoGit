@@ -27,7 +27,7 @@ export default {
         ...mapGetters('log', ['currentMenus', 'activeSubMenu']),
         ...mapState('log', ['sideStatus', 'menuList']),
         style() {
-            const width = this.sideStatus ? '180px' : '64px';
+            const width = this.sideStatus ? '170px' : '64px';
             return {
                 width
             };
@@ -73,7 +73,7 @@ export default {
     overflow: hidden auto;
     transition: width 0.2s;
     height: calc(100vh - 46px);
-    width: 180px;
+    width: 170px;
     float: left;
     box-shadow: 2px 0px 7px 0px rgba(48, 48, 82, 0.1);
     /deep/.el-menu-item {
