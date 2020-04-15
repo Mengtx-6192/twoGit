@@ -1,3 +1,5 @@
+import config from '@/assets/utils/config';
+
 const router = [
     {
         path: '/login',
@@ -9,7 +11,7 @@ const router = [
     },
     {
         path: '/',
-        redirect: '/example/tree'
+        redirect: config[process.env.NODE_ENV].home
     },
     {
         path: '/401',
