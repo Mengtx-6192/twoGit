@@ -72,7 +72,7 @@ export default {
 .scrollbar-wrapper {
     overflow: hidden auto;
     transition: width 0.2s;
-    height: calc(100vh - 46px);
+    height: calc(100vh - 36px);
     width: 170px;
     float: left;
     box-shadow: 2px 0px 7px 0px rgba(48, 48, 82, 0.1);

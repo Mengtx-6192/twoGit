@@ -89,10 +89,6 @@ export default {
                 }
                 style.innerText = this.updateStyle(innerText, originalCluster, themeCluster);
             });
-            this.$message({
-                message: '换肤成功',
-                type: 'success'
-            });
         }
     },
     mounted() {
