@@ -21,6 +21,7 @@ const state = {
     guid: null,
     menuList: [],
     activeMenu: '0',
+    activeSubMenu: '0',
     sideStatus: true // true 展开 false: 关闭
 };
 
@@ -30,6 +31,12 @@ const getters = {
     },
     menuList(state) {
         return state.menuList;
+    },
+    activeMenu(state) {
+        return state.activeMenu;
+    },
+    activeSubMenu(state) {
+        return state.activeSubMenu;
     }
 };
 
@@ -48,6 +55,9 @@ const mutations = {
     },
     setMenuList(state, list) {
         state.menuList = list;
+    },
+    setActiveSubMenu(state, id) {
+        state.activeSubMenu = id;
     }
 };
 export default {

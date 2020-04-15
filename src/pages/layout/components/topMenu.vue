@@ -98,10 +98,10 @@ export default {
             if (this.currentMenus.children) {
                 const firstChild = this.currentMenus.children[0];
                 if (firstChild) {
-                    this.$router.push(firstChild.url);
+                    this.$router.push(firstChild.uri);
                 }
             } else {
-                this.$router.push(this.currentMenus.url);
+                this.$router.push(this.currentMenus.uri);
             }
         },
         handleToggleMenu() {

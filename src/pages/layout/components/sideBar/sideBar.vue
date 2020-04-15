@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import SidebarItem from './SidebarItem';
 export default {
     components: { SidebarItem },
@@ -24,7 +24,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters('log', ['currentMenus']),
+        ...mapGetters('log', ['currentMenus', 'activeSubMenu']),
         ...mapState('log', ['sideStatus', 'menuList']),
         style() {
             const width = this.sideStatus ? '180px' : '64px';
@@ -43,8 +43,11 @@ export default {
     },
     created() {},
     methods: {
+        ...mapMutations('log', ['setActiveSubMenu']),
         setActive() {
-            if (this.currentMenus.children && this.currentMenus.children.length) {
+            if (this.activeSubMenu !== '0') {
+                this.activeMenu = this.activeSubMenu;
+            } else if (this.currentMenus.children && this.currentMenus.children.length) {
                 this.activeMenu = this.currentMenus.children[0].id;
             }
         },
@@ -52,10 +55,12 @@ export default {
             const target = this.currentMenus.children.find(it => it.id === indexPath[0]);
             if (target) {
                 if (indexPath.length === 1) {
-                    this.$router.push(target.url);
+                    this.$router.push(target.uri);
+                    this.setActiveSubMenu(target.id);
                 } else {
                     const son = target.children.find(it => it.id === indexPath[1]);
-                    this.$router.push(son.url);
+                    this.$router.push(son.uri);
+                    this.setActiveSubMenu(son.id);
                 }
             }
         }
