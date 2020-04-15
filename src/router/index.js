@@ -1,7 +1,11 @@
 import Router from 'vue-router';
-import pages from '@/pages';
 import views from '@/views';
+import pages from '@/pages';
 import store from '../store/index';
+import 'nprogress/nprogress.css'; // progress bar style
+import NProgress from 'nprogress'; // progress bar
+
+NProgress.configure({ showSpinner: false });
 
 /**
  * 重写路由的push方法
@@ -75,10 +79,16 @@ export function createRouter() {
         const { meta } = to;
         const isLogin = store.state.user.isLogin || false;
 
+        NProgress.start();
+
         if (meta.authPass !== false && !isLogin && to.name !== 'login') {
             return next('/login');
         }
         next();
+    });
+
+    router.afterEach(() => {
+        NProgress.done();
     });
 
     return router;

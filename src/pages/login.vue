@@ -146,10 +146,10 @@ export default {
                             this.setAccountInfo(ret);
                             let path = Vue.$config.home;
                             if (vm.currentMenus) {
-                                if (vm.currentMenus.url) {
-                                    path = vm.currentMenus.url;
+                                if (vm.currentMenus.uri) {
+                                    path = vm.currentMenus.uri;
                                 } else {
-                                    path = vm.currentMenus.children[0].url;
+                                    path = vm.currentMenus.children[0].uri;
                                 }
                             }
                             vm.$router.push({ path: path });
