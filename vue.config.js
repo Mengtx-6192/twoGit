@@ -66,7 +66,7 @@ module.exports = {
                 'element-ui': 'ELEMENT',
                 vuex: 'Vuex',
                 axios: 'axios',
-                lodash: 'lodash'
+                lodash: '_'
             };
 
             const plugins = [];

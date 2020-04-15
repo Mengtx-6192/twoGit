@@ -7,7 +7,7 @@ const config = {
     historyMode: 'history',
     axiosResponseType: 'json',
     clientId: 'cpm',
-    clientSecret: 'pc_secret',
+    clientSecret: 'cpm_secret',
     themeColor: '#0C3F72',
     customBg: [],
     customColor: [],
