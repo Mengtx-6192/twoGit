@@ -207,15 +207,17 @@ export default {
     .main {
         overflow: hidden;
         flex: 1;
+        display: flex;
         .right-panel {
-            background-color: #fff;
+            background-color: #f2f3fa;
             height: calc(100vh - 36px);
             .router {
-                background: #f2f3fa;
-                padding: 20px;
+                background: #fff;
+                margin: 20px;
                 position: relative;
                 height: calc(100% - 40px);
                 overflow: hidden scroll;
+                box-sizing: border-box;
                 .router-view-page {
                     min-height: calc(100% - 20px);
                     background-color: #fff;

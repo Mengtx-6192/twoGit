@@ -75,6 +75,7 @@ export default {
     height: calc(100vh - 36px);
     width: 170px;
     float: left;
+    background: #fff;
     box-shadow: 2px 0px 7px 0px rgba(48, 48, 82, 0.1);
     /deep/.el-menu-item {
         padding-left: 12px;
