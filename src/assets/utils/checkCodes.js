@@ -9,7 +9,6 @@ function get(key) {
     return JSON.parse(localStorage.getItem(key));
 }
 function getAllCode() {
-    debugger
     return globalService
         .codeList()
         .then(res => {
