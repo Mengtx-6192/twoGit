@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';
-  src:  url('fonts/iconfont.eot?74hh7z');
-  src:  url('fonts/iconfont.eot?74hh7z#iefix') format('embedded-opentype'),
-    url('fonts/iconfont.ttf?74hh7z') format('truetype'),
-    url('fonts/iconfont.woff?74hh7z') format('woff'),
-    url('fonts/iconfont.svg?74hh7z#iconfont') format('svg');
+  src:  url('fonts/iconfont.eot?o4hb8q');
+  src:  url('fonts/iconfont.eot?o4hb8q#iefix') format('embedded-opentype'),
+    url('fonts/iconfont.ttf?o4hb8q') format('truetype'),
+    url('fonts/iconfont.woff?o4hb8q') format('woff'),
+    url('fonts/iconfont.svg?o4hb8q#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,8 +25,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-rz-fullscreen:before {
-  content: "\e906";
+.icon-rz-en:before {
+  content: "\e900";
+}
+.icon-rz-theme:before {
+  content: "\e901";
 }
 .icon-rz-eye:before {
   content: "\e904";
@@ -34,9 +37,12 @@
 .icon-rz-eye-open:before {
   content: "\e905";
 }
-.icon-rz-exit-fullscreen:before {
-  content: "\e908";
+.icon-rz-fullscreen:before {
+  content: "\e906";
 }
 .icon-rz-message:before {
   content: "\e907";
+}
+.icon-rz-exit-fullscreen:before {
+  content: "\e908";
 }

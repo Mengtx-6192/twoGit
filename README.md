@@ -42,3 +42,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---2020-4-16 todo by wsl--
 1、修改 页面布局右边主题的背景色，改成全局设置，不需要在单个页面设置白色
 2、获取code 编码 统一放在router => index.js router.beforeEach 里面统一处理 ，去除原先 layout 里面的数据获取
+3、菜单获取的后端数据接口调整
+4、主题色修改成设定色
+5、中英文替换图表

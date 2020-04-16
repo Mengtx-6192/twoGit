@@ -8,7 +8,7 @@ const config = {
     axiosResponseType: 'json',
     clientId: 'cpm',
     clientSecret: 'cpm_secret',
-    themeColor: '#0C3F72',
+    themeColor: '#1364B6',
     customBg: [],
     customColor: [],
     home: '/example/tree'

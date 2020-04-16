@@ -22,6 +22,7 @@ const state = {
     menuList: [],
     activeMenu: '0',
     activeSubMenu: '0',
+    activeTheme: {},
     sideStatus: true // true 展开 false: 关闭
 };
 
@@ -37,6 +38,9 @@ const getters = {
     },
     activeSubMenu(state) {
         return state.activeSubMenu;
+    },
+    activeTheme(state) {
+        return state.activeTheme;
     }
 };
 
@@ -58,6 +62,9 @@ const mutations = {
     },
     setActiveSubMenu(state, id) {
         state.activeSubMenu = id;
+    },
+    setActiveTheme(state, theme) {
+        state.activeTheme = theme;
     }
 };
 export default {

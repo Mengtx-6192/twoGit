@@ -74,7 +74,7 @@ export default {
     margin: 0 10px;
 
     .el-badge__content {
-        background: #1989fa;
+        background: var(--theme-active-color);
         height: 14px;
         line-height: 14px;
         transform: scale(0.9) !important;

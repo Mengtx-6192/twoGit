@@ -139,9 +139,9 @@ export default {
             box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
             padding-left: 20px;
             border: none;
-            background: var(--theme-color);
             overflow: hidden;
             height: 36px;
+            background: transparent;
 
             li.el-menu-item {
                 border: none;
@@ -156,7 +156,7 @@ export default {
                 &.is-active {
                     border: none;
                     color: #fff;
-                    background: #052a51;
+                    background: var(--nav-active-color);
                 }
             }
         }
@@ -170,7 +170,6 @@ export default {
 .more-menu {
     height: 36px;
     line-height: 36px;
-    background: var(--theme-color) !important;
     color: #fff !important;
     padding: 0 10px;
     width: 60px;

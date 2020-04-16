@@ -29,7 +29,6 @@ export default {
 <style lang="scss" scoped>
 .hamburger-wrap {
     text-align: center;
-    background-color: var(--theme-color);
 
     .hamburger {
         color: #fff;

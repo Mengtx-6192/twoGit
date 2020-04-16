@@ -4,21 +4,22 @@
             <div class="logo"><img :src="logoSmall" v-if="logoSmall" />{{ titie }}</div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
-                <choose-color class="drop-color"></choose-color>
-                <el-dropdown class="drop-lang" @command="changeLang">
+                <el-dropdown class="drop-lang" @command="changeLang" trigger="click">
                     <span class="el-dropdown-link">
-                        {{ $t('common.home') }}<i class="el-icon-arrow-down el-icon--right"></i>
+                        <el-tooltip content="中英文" placement="bottom" effect="light">
+                            <i class="icon-rz-en" />
+                        </el-tooltip>
+                        <!-- {{ $t('common.home') }}<i class="el-icon-arrow-down el-icon--right"></i> -->
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="zh">简体中文</el-dropdown-item>
                         <el-dropdown-item command="en">English</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-tooltip class="screen-full" effect="light" content="全屏" placement="bottom-end">
-                    <screen-full></screen-full>
-                </el-tooltip>
-                <message></message>
-                <user></user>
+                <choose-theme />
+                <screen-full />
+                <message />
+                <user />
             </div>
         </header>
 
@@ -43,16 +44,16 @@ import tagsView from './components/tagsView';
 import user from './components/user';
 import screenFull from './components/screenful';
 import sideBar from './components/sideBar/sideBar';
-import chooseColor from './components/chooseColor';
 import pagesTab from './components/pagesTab';
-import { globalService } from '@/services/global';
+import chooseTheme from './components/chooseTheme';
 import message from './components/message';
+import { globalService } from '@/services/global';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
 export default {
     name: 'layoutPage',
-    components: { screenFull, user, topMenu, sideBar, chooseColor, pagesTab, message },
+    components: { screenFull, user, topMenu, sideBar, pagesTab, message, chooseTheme },
     data() {
         return {
             titie: Vue.$config.projectName,
@@ -114,9 +115,9 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: var(--nav-color);
         .logo {
             padding: 0 30px;
-            background-color: var(--theme-color);
             color: #fff;
             line-height: 36px;
             height: 100%;
@@ -132,10 +133,10 @@ export default {
             display: flex;
             justify-content: flex-end;
             height: 100%;
-            background-color: var(--theme-color);
             line-height: 35px;
-            border-left: 1px solid #052a51;
+            border-left: 1px solid var(--nav-active-color);
             padding-left: 10px;
+            align-items: center;
         }
         .drop-color {
             line-height: 34px;
@@ -150,19 +151,18 @@ export default {
         .menus {
             flex: 1;
         }
-        .screen-full {
-            cursor: pointer;
-        }
     }
 
     .main {
         overflow: hidden;
         flex: 1;
         display: flex;
+        position: relative;
         .right-panel {
             background-color: #f2f3fa;
             height: calc(100vh - 36px);
             flex: 1;
+            overflow-x: hidden; // 解决 el-table 遇到flex 不继承父级width
             .router {
                 background: #fff;
                 margin: 20px;

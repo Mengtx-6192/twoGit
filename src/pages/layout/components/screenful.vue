@@ -1,7 +1,9 @@
 <template>
-    <div style="color: #fff;">
-        <i :class="isFullscreen ? 'icon-rz-exit-fullscreen' : 'icon-rz-fullscreen'" @click="click" />
-    </div>
+    <el-tooltip class="screen-full" effect="light" content="全屏" placement="bottom">
+        <div style="color: #fff;">
+            <i :class="isFullscreen ? 'icon-rz-exit-fullscreen' : 'icon-rz-fullscreen'" @click="click" />
+        </div>
+    </el-tooltip>
 </template>
 
 <script>
@@ -49,12 +51,16 @@ export default {
 </script>
 
 <style lang="scss">
-.screenfull-svg {
-    display: inline-block;
+.screen-full {
     cursor: pointer;
-    fill: #5a5e66;
-    width: 20px;
-    height: 20px;
-    vertical-align: 10px;
+
+    .screenfull-svg {
+        display: inline-block;
+        cursor: pointer;
+        fill: #5a5e66;
+        width: 20px;
+        height: 20px;
+        vertical-align: 10px;
+    }
 }
 </style>
