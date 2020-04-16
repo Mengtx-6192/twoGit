@@ -72,13 +72,6 @@ export default {
 
         this.watchUrlCallback();
 
-        if ($codeCollection && $detailMap) {
-            window.$codeCollection = $codeCollection;
-            window.$detailMap = $detailMap;
-        } else {
-            this.getAllCode();
-        }
-
         stompClient.connect(headers, frame => {
             stompClient.subscribe('/topic/sendTopic', message => {
                 this.$message.info('收到新消息了');
@@ -105,48 +98,6 @@ export default {
             console.log('i18n', res1);
             const res = await globalService.i18nMessage({ i18n_message: val });
             console.log('i18n_message', res);
-        },
-        getAllCode() {
-            globalService.codeList().then(res => {
-                const { $codeCollection, $detailMap } = this.formatData(res.data);
-                localStorage.setItem('$codeCollection', JSON.stringify($codeCollection));
-                localStorage.setItem('$detailMap', JSON.stringify($detailMap));
-                window.$codeCollection = $codeCollection;
-                window.$detailMap = $detailMap;
-            });
-        },
-        formatData(arr) {
-            const res = [];
-            let obj = {};
-            let detailMap = {};
-
-            function recursion(arr) {
-                arr.forEach(it => {
-                    const code = it.dictKey;
-                    detailMap[code] = it.dictValue;
-                    if (it.children) {
-                        res.push(it);
-                        recursion(it.children);
-                    }
-                });
-            }
-
-            recursion(arr);
-            res.forEach(v => {
-                const key = v.dictKey;
-                obj[key] = v.children.map(it => {
-                    const code = it.dictKey;
-                    detailMap[code] = it.dictValue;
-                    return {
-                        label: it.dictValue,
-                        id: it.dictKey
-                    };
-                });
-            });
-            return {
-                $codeCollection: obj,
-                $detailMap: detailMap
-            };
         }
     }
 };
@@ -211,6 +162,7 @@ export default {
         .right-panel {
             background-color: #f2f3fa;
             height: calc(100vh - 36px);
+            flex: 1;
             .router {
                 background: #fff;
                 margin: 20px;

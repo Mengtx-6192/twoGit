@@ -38,3 +38,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ├    ├── router — 路由
 ├    ├── store — vuex定义
 └─ └── utils —基础工具
+
+---2020-4-16 todo by wsl--
+1、修改 页面布局右边主题的背景色，改成全局设置，不需要在单个页面设置白色
+2、获取code 编码 统一放在router => index.js router.beforeEach 里面统一处理 ，去除原先 layout 里面的数据获取

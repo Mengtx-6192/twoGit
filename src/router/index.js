@@ -4,6 +4,7 @@ import pages from '@/pages';
 import store from '../store/index';
 import 'nprogress/nprogress.css'; // progress bar style
 import NProgress from 'nprogress'; // progress bar
+import { checkCodes } from '@/assets/utils/checkCodes';
 
 NProgress.configure({ showSpinner: false });
 
@@ -76,7 +77,7 @@ export function createRouter() {
 
     // 路由权限控制
     router.beforeEach((to, from, next) => {
-        const { meta } = to;
+        const { meta, name } = to;
         const isLogin = store.state.user.isLogin || false;
 
         NProgress.start();
@@ -84,7 +85,12 @@ export function createRouter() {
         if (meta.authPass !== false && !isLogin && to.name !== 'login') {
             return next('/login');
         }
-        next();
+
+        if (name && name !== 'login') {
+            checkCodes(next);
+        } else {
+            next();
+        }
     });
 
     router.afterEach(() => {

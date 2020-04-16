@@ -12,7 +12,7 @@ const api = {
     },
     // 用户菜单
     getMenus() {
-        return service.post('/rdp-user/user/queryUserRoleMenuOperate')
+        return service.post('/rdp-user/user/queryUserRoleMenuOperate');
     }
 };
 export default api;
