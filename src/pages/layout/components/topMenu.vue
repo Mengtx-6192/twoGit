@@ -69,8 +69,7 @@ export default {
         ...mapMutations('log', ['menuClicked', 'setMenuList']),
         getMenus() {
             globalService.getMenus().then(res => {
-                const data = _.get(res, 'data.roleMenuOperateVOList[0]', []);
-                const menuList = data && data.menuDTOList;
+                const menuList = _.get(res, 'data.allMenuTree', []);
 
                 if (!menuList.length) {
                     return;
