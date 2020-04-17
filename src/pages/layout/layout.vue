@@ -158,7 +158,6 @@ export default {
         flex: 1;
         display: flex;
         position: relative;
-        padding-right: 20px;
         .right-panel {
             background-color: #f2f3fa;
             height: calc(100vh - 36px);
