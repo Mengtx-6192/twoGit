@@ -3,13 +3,6 @@
         <router-view />
     </div>
 </template>
-<script>
-export default {
-    mounted() {
-        document.getElementsByTagName('body')[0].style.setProperty('--theme-color', Vue.$config.themeColor);
-    }
-};
-</script>
 <style lang="scss">
 #app {
     font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,

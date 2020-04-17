@@ -163,7 +163,6 @@ export default {
         },
 
         setThemeColor(item) {
-            Vue.$config.themeColor = item.color;
             let $body = document.getElementsByTagName('body')[0];
 
             $body.style.setProperty('--theme-color', item.color);
