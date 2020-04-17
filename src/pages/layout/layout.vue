@@ -154,10 +154,12 @@ export default {
     }
 
     .main {
-        overflow: hidden;
-        flex: 1;
         display: flex;
-        position: relative;
+        box-sizing: border-box;
+        justify-content: space-between;
+        width: 100%;
+        overflow: hidden;
+        padding-right: 20px;
         .right-panel {
             background-color: #f2f3fa;
             height: calc(100vh - 36px);
@@ -168,7 +170,7 @@ export default {
                 margin: 20px;
                 position: relative;
                 height: calc(100% - 40px);
-                overflow: hidden scroll;
+                // overflow: hidden scroll;
                 box-sizing: border-box;
                 .router-view-page {
                     min-height: calc(100% - 20px);
