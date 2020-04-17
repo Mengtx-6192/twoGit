@@ -170,7 +170,7 @@ export default {
                 margin: 20px;
                 position: relative;
                 height: calc(100% - 40px);
-                // overflow: hidden scroll;
+                overflow: hidden scroll;
                 box-sizing: border-box;
                 .router-view-page {
                     min-height: calc(100% - 20px);
