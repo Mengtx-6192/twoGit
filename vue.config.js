@@ -43,7 +43,7 @@ module.exports = {
                 }
             }
         },
-        sockHost: 'http://127.0.0.1:8080'
+        sockHost: 'http://0.0.0.0:8080'
     },
     parallel: require('os').cpus().length > 1,
     chainWebpack: config => {

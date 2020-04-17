@@ -111,6 +111,13 @@ export default {
     display: flex;
     flex-direction: column;
 
+    $linkColor: var(--theme-color);
+
+    /deep/.el-menu-item.is-active {
+        background-color: var(--theme-hover-color);
+        border-right: 2px solid var(--theme-active-color);
+    }
+
     header.top {
         display: flex;
         justify-content: space-between;
@@ -170,7 +177,6 @@ export default {
                 height: calc(100% - 40px);
                 overflow: hidden scroll;
                 box-sizing: border-box;
-                border-radius: 2px;
                 .router-view-page {
                     min-height: calc(100% - 20px);
                     background-color: #fff;

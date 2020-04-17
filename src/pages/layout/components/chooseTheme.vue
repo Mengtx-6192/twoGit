@@ -41,7 +41,8 @@ export default {
                     active: true,
                     navDefaultColor: '#0c3f72', // 导航栏默认色
                     navActiveColor: '#042b52', // 导航栏选中
-                    colorActive: '#1989FA' // 次主色触发
+                    colorActive: '#1989FA', // 次主色触发
+                    colorHover: '#e7f0f8'
                 },
                 {
                     label: '蓝',
@@ -50,7 +51,8 @@ export default {
                     active: false,
                     navDefaultColor: '#0061c6',
                     navActiveColor: '#053f86',
-                    colorActive: '#47a2ff' // 次主色触发
+                    colorActive: '#47a2ff',
+                    colorHover: '#e8f4ff'
                 },
                 {
                     label: '青',
@@ -59,16 +61,18 @@ export default {
                     active: false,
                     navDefaultColor: '#048282',
                     navActiveColor: '#005555',
-                    colorActive: '#00dbdb' // 次主色触发
+                    colorActive: '#00dbdb',
+                    colorHover: '#e7f9f9'
                 },
                 {
                     label: '橙',
-                    color: '#faad13',
+                    color: '#fbab0a',
                     value: 'theme2',
                     active: false,
                     navDefaultColor: '#ca6904',
                     navActiveColor: '#8a4205',
-                    colorActive: '#865900' // 次主色触发
+                    colorActive: '#ff8f06',
+                    colorHover: '#fff7e7'
                 }
             ]
         };
@@ -169,6 +173,7 @@ export default {
             $body.style.setProperty('--nav-color', item.navDefaultColor);
             $body.style.setProperty('--nav-active-color', item.navActiveColor);
             $body.style.setProperty('--theme-active-color', item.colorActive);
+            $body.style.setProperty('--theme-hover-color', item.colorHover);
         },
         updateStyle(style, oldCluster, newCluster) {
             let newStyle = style;
