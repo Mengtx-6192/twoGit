@@ -50,4 +50,8 @@ a {
     color: #fff !important;
     opacity: 1;
 }
+
+.el-link--primary {
+    color: var(--theme-active-color) !important;
+}
 </style>
