@@ -9,12 +9,6 @@ const api = {
             },
             errHandler: false
         });
-    },
-    refreshToken(params) {
-        return service.post('/rdp-auth/oauth/token');
-    },
-    getCode() {
-        return service.get('/rdp-system/dict-biz/list');
     }
 };
 

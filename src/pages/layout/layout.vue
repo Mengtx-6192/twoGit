@@ -3,7 +3,7 @@
         <header class="top">
             <div class="logo">
                 <img :src="logoSmall" v-if="logoSmall" />
-                <span v-else>{{ titie }}</span>
+                <!-- <span>{{ titie }}</span> -->
             </div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
@@ -18,8 +18,8 @@
                         <el-dropdown-item command="zh">简体中文</el-dropdown-item>
                         <el-dropdown-item command="en">English</el-dropdown-item>
                     </el-dropdown-menu>
-                </el-dropdown>
-                <choose-theme /> -->
+                </el-dropdown> -->
+                <choose-theme />
                 <screen-full />
                 <!-- <message /> -->
                 <user />
@@ -113,6 +113,13 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    $linkColor: var(--theme-color);
+
+    /deep/.el-menu-item.is-active {
+        background-color: var(--theme-hover-color);
+        border-right: 2px solid var(--theme-active-color);
+    }
 
     header.top {
         display: flex;

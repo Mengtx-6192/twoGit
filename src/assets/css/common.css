@@ -22,12 +22,26 @@ div, h1, h2, h3, h4, h5, h6, header, li, p, section, ul {
     font-size: 16px;
 }
 
+/* 表格样式覆盖 */
 .el-table th {
     background: #eceff3 !important;
 }
 
 .el-table thead {
     color: #1F2743 !important;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #E8F3FE !important;
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #f6f7fb !important;
+}
+
+.el-table--mini td,
+.el-table--mini th {
+    padding: 5px 0 !important;
 }
 
 /* 兼容safari input 光标不居中 */

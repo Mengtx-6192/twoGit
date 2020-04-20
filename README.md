@@ -45,3 +45,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 3、菜单获取的后端数据接口调整
 4、主题色修改成设定色
 5、中英文替换图表
+
+
+---2020-4-17 todo by wsl--
+1、表格样式调整
+2、修改默认菜单选中

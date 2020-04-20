@@ -1,6 +1,6 @@
 <template>
     <div class="choose-theme">
-        <el-popover placement="bottom" trigger="click" popper-class="theme-pop">
+        <!-- <el-popover placement="bottom" trigger="click" popper-class="theme-pop">
             <el-divider content-position="left"><i class="icon-rz-theme"></i>主题色</el-divider>
             <ul class="theme-list">
                 <li
@@ -18,14 +18,14 @@
             <el-tooltip content="主题" placement="bottom" effect="light" slot="reference">
                 <i class="icon-rz-theme" />
             </el-tooltip>
-        </el-popover>
+        </el-popover> -->
     </div>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex';
 const version = require('element-ui/package.json').version; // element-ui version from node_modules
-const ORIGINAL_THEME = '#4ca3a6';
+const ORIGINAL_THEME = '#409EFF';
 
 export default {
     name: 'chooseTheme',
@@ -36,12 +36,13 @@ export default {
             themeList: [
                 {
                     label: '默认',
-                    color: 'red',
+                    color: '#1364b6',
                     value: 'theme0', // element ui primary color
                     active: true,
-                    navDefaultColor: '#f40', // 导航栏默认色
-                    navActiveColor: 'blue', // 导航栏选中
-                    colorActive: 'green' // 次主色触发
+                    navDefaultColor: '#0c3f72', // 导航栏默认色
+                    navActiveColor: '#042b52', // 导航栏选中
+                    colorActive: '#1989FA', // 次主色触发
+                    colorHover: '#e7f0f8'
                 },
                 {
                     label: '蓝',
@@ -50,7 +51,8 @@ export default {
                     active: false,
                     navDefaultColor: '#0061c6',
                     navActiveColor: '#053f86',
-                    colorActive: '#47a2ff' // 次主色触发
+                    colorActive: '#47a2ff',
+                    colorHover: '#e8f4ff'
                 },
                 {
                     label: '青',
@@ -59,16 +61,18 @@ export default {
                     active: false,
                     navDefaultColor: '#048282',
                     navActiveColor: '#005555',
-                    colorActive: '#00dbdb' // 次主色触发
+                    colorActive: '#00dbdb',
+                    colorHover: '#e7f9f9'
                 },
                 {
                     label: '橙',
-                    color: '#faad13',
+                    color: '#fbab0a',
                     value: 'theme2',
                     active: false,
                     navDefaultColor: '#ca6904',
                     navActiveColor: '#8a4205',
-                    colorActive: '#865900' // 次主色触发
+                    colorActive: '#ff8f06',
+                    colorHover: '#fff7e7'
                 }
             ]
         };
@@ -163,13 +167,13 @@ export default {
         },
 
         setThemeColor(item) {
-            Vue.$config.themeColor = item.color;
             let $body = document.getElementsByTagName('body')[0];
 
             $body.style.setProperty('--theme-color', item.color);
             $body.style.setProperty('--nav-color', item.navDefaultColor);
             $body.style.setProperty('--nav-active-color', item.navActiveColor);
             $body.style.setProperty('--theme-active-color', item.colorActive);
+            $body.style.setProperty('--theme-hover-color', item.colorHover);
         },
         updateStyle(style, oldCluster, newCluster) {
             let newStyle = style;

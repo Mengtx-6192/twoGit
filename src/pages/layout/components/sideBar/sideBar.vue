@@ -44,11 +44,19 @@ export default {
     created() {},
     methods: {
         ...mapMutations('log', ['setActiveSubMenu']),
+        filterDefaultSubMenu(list) {
+            if (list.children && list.children.length) {
+                this.filterDefaultSubMenu(list.children[0]);
+            } else {
+                this.activeMenu = list.id;
+                this.setActiveSubMenu(this.activeMenu);
+            }
+        },
         setActive() {
             if (this.activeSubMenu !== '0') {
                 this.activeMenu = this.activeSubMenu;
             } else if (this.currentMenus.children && this.currentMenus.children.length) {
-                this.activeMenu = this.currentMenus.children[0].id;
+                this.filterDefaultSubMenu(this.currentMenus);
             }
         },
         handleSelect(index, indexPath) {
@@ -83,6 +91,7 @@ export default {
 
     .el-menu-item,
     .el-submenu {
+        min-width: auto !important;
         img {
             width: 18px;
             height: 18px;

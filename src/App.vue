@@ -3,13 +3,6 @@
         <router-view />
     </div>
 </template>
-<script>
-export default {
-    mounted() {
-        document.getElementsByTagName('body')[0].style.setProperty('--theme-color', Vue.$config.themeColor);
-    }
-};
-</script>
 <style lang="scss">
 #app {
     font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,
@@ -25,8 +18,8 @@ a {
     text-decoration: none;
     outline: 0;
     cursor: pointer;
-    -webkit-transition: color .2s ease;
-    transition: color .2s ease;
+    -webkit-transition: color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 #nav {
@@ -52,9 +45,13 @@ a {
     opacity: 0.6;
 }
 
-.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
     background-color: var(--theme-color) !important;
     color: #fff !important;
     opacity: 1;
+}
+
+.el-link--primary {
+    color: var(--theme-active-color) !important;
 }
 </style>

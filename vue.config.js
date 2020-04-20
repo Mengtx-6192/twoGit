@@ -51,9 +51,12 @@ module.exports = {
                     '^/api': '/'
                 }
             },
-            '/rdp-auth': {
+            '/api/rdp-auth': {
                 target: dev1,
-                changeOrigin: true
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '/rdp-auth'
+                }
             }
         },
         sockHost: 'http://127.0.0.1:8080'

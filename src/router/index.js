@@ -78,9 +78,7 @@ export function createRouter() {
     // 路由权限控制
     router.beforeEach((to, from, next) => {
         const { meta, name } = to;
-        // todo...
-        const isLogin = store.state.user.isLogin || true;
-        // const isLogin = store.state.user.isLogin || false;
+        const isLogin = store.state.user.isLogin || false;
 
         NProgress.start();
 
