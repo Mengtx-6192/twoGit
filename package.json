@@ -1,0 +1,50 @@
+{
+  "name": "base-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "bundle-report": "webpack-bundle-analyzer --port 8123 dist/stats.json"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "element-ui": "^2.13.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-plugin-router": "~4.2.0",
+    "@vue/cli-plugin-vuex": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "async-validator": "^3.2.4",
+    "axios": "^0.19.2",
+    "babel-eslint": "^10.0.3",
+    "compression-webpack-plugin": "^3.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "js-base64": "^2.5.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0",
+    "nprogress": "^0.2.0",
+    "prettier": "^1.19.1",
+    "promise-polyfill": "^8.1.3",
+    "sass-loader": "^8.0.2",
+    "screenfull": "^5.0.2",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-i18n": "^8.17.0",
+    "vue-template-compiler": "^2.6.11",
+    "vuex-persistedstate": "^3.0.1",
+    "webpack-bundle-analyzer": "^3.6.1"
+  }
+}
