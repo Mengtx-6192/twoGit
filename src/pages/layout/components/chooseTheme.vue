@@ -75,7 +75,7 @@ export default {
                     colorHover: '#fff7e7'
                 }
             ],
-            showTheme: Vue.$config.theme
+            showTheme: _.get(Vue.$config, 'pageHeader.theme', true)
         };
     },
     computed: {

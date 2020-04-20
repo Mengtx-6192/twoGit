@@ -3,8 +3,8 @@
         <header class="top" :style="{ height: `${pageHeader.height}px` }">
             <div class="logo"><img :src="logoSmall" v-if="logoSmall" />{{ titie }}</div>
             <top-menu class="menus"></top-menu>
-            <div class="functions-user" v-if="pageHeader.lang">
-                <el-dropdown class="drop-lang" @command="changeLang" trigger="click">
+            <div class="functions-user">
+                <el-dropdown class="drop-lang" @command="changeLang" trigger="click" v-if="pageHeader.lang">
                     <span class="el-dropdown-link">
                         <el-tooltip content="中英文" placement="bottom" effect="light">
                             <i class="icon-rz-en" />
