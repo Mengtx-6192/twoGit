@@ -133,10 +133,10 @@ export default {
             height: 100%;
             font-size: 16px;
 
-            // img {
-            //     width: 18px;
-            //     height: 18px;
-            // }
+            img {
+                height: 40px;
+                padding-top: 10px;
+            }
         }
         .functions-user {
             padding-right: 30px;
