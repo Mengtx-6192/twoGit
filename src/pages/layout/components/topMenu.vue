@@ -143,14 +143,16 @@ export default {
             padding-left: 20px;
             border: none;
             overflow: hidden;
-            height: 36px;
+            height: 100%;
             background: transparent;
 
             li.el-menu-item {
                 border: none;
-                line-height: 36px;
-                height: 36px;
                 padding: 0 14px;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                line-height: 100%;
 
                 &:hover {
                     background-color: #ffffff38;
@@ -171,10 +173,11 @@ export default {
 }
 
 .more-menu {
-    height: 36px;
-    line-height: 36px;
+    line-height: 100%;
     color: #fff !important;
     padding: 0 10px;
     width: 60px;
+    display: flex !important;
+    align-items: center;
 }
 </style>

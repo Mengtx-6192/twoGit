@@ -50,3 +50,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---2020-4-17 todo by wsl--
 1、表格样式调整
 2、修改默认菜单选中
+
+---2020-4-18 todo by wsl ---
+1、树筛选 修改成 不区分大小写
+2、layout head 在 config 添加 配置项
+pageHeader: {
+    screenful: true, // 是否显示全屏
+    theme: false, // 是否显示主题
+    lang: true, // 是否显示切换语言
+    message: true, // 是否显示消息通知
+    logoSmall: '', // 页面头部项目名称前面显示logo 配置
+    height: 36 // 页面头部的高度
+}

@@ -19,6 +19,13 @@
                 </el-tab-pane>
             </el-tabs>
         </div>
+        <el-dialog :visible.sync="visible">
+            <Approve ref="approveRef"></Approve>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="value = false">取 消</el-button>
+                <el-button type="primary" @click="approveOk">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -26,11 +33,13 @@
 import baseInfo from './detail/baseInfo';
 import timeInfo from './detail/timeInfo';
 import topTitle from '@/components/topTitle';
+import Approve from '@/components/approve';
 export default {
     name: 'create',
     components: {
         baseInfo,
         timeInfo,
+        Approve,
         topTitle
     },
     computed: {
@@ -41,7 +50,7 @@ export default {
             return this.$route.query.page;
         },
         title() {
-            return this.page === 'apply' ? '立项审批' : '立项详情'
+            return this.page === 'apply' ? '立项审批' : '立项详情';
         },
         btnList() {
             let list = [
@@ -77,7 +86,8 @@ export default {
     },
     data() {
         return {
-            active: '1'
+            active: '1',
+            visible: false
         };
     },
     methods: {
@@ -113,18 +123,23 @@ export default {
             });
         },
         submit() {},
+        async approveOk() {
+            const res = await this.$refs.approveRef.getModel();
+            console.log(res);
+        },
         refuse() {
-            this.$confirm('确认审批拒绝？', '拒绝', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-            }).then(async () => {
-                // const res = await this.$api.prjM.refuse();
-                this.$message({
-                    type: 'success',
-                    message: '拒绝!'
-                });
-            });
+            this.visible = true;
+            // this.$confirm('确认审批拒绝？', '拒绝', {
+            //     confirmButtonText: '确定',
+            //     cancelButtonText: '取消',
+            //     type: 'warning'
+            // }).then(async () => {
+            //     // const res = await this.$api.prjM.refuse();
+            //     this.$message({
+            //         type: 'success',
+            //         message: '拒绝!'
+            //     });
+            // });
         },
         ok() {
             this.$confirm('确认审批通过？', '通过', {

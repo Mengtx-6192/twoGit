@@ -1,61 +1,69 @@
 <template>
-    <div class="login-container" :style="{ 'background-image': `url(${this.loginBg})` }">
-        <el-form
-            ref="loginForm"
-            :model="loginForm"
-            :rules="loginRules"
-            class="login-form"
-            autocomplete="on"
-            label-position="left"
-        >
-            <div class="logo-icon">
-                <img :src="logo" />
-            </div>
-            <div class="title-container">
-                <h3 class="title">{{ title }}</h3>
-            </div>
-
-            <el-form-item prop="username">
-                <img src="@/assets/images/user.png" class="icon" />
-                <el-input
-                    ref="username"
-                    v-model="loginForm.username"
-                    placeholder="Username"
-                    name="username"
-                    type="text"
-                    tabindex="1"
+    <div class="login">
+        <div class="content-top">
+            <img src="https://pc-app-uat.egocvs.com/img/login_logo.06c11c03.png" alt="" /><span>开发营建</span>
+        </div>
+        <div class="content-middle">
+            <div class="login-container" :style="{ 'background-image': `url(${this.loginBg})` }">
+                <el-form
+                    ref="loginForm"
+                    :model="loginForm"
+                    :rules="loginRules"
+                    class="login-form"
                     autocomplete="on"
-                />
-            </el-form-item>
+                    label-position="left"
+                >
+                    <div class="logo-icon" v-if="logo">
+                        <img :src="logo" />
+                    </div>
+                    <div class="title-container">
+                        <h3 class="title">{{ title }}</h3>
+                    </div>
 
-            <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-                <el-form-item prop="password">
-                    <img src="@/assets/images/pwd.png" class="icon" />
-                    <el-input
-                        :key="passwordType"
-                        ref="password"
-                        v-model="loginForm.password"
-                        :type="passwordType"
-                        placeholder="Password"
-                        name="password"
-                        tabindex="2"
-                        autocomplete="on"
-                        @keyup.native="checkCapslock"
-                        @blur="capsTooltip = false"
-                        @keyup.enter.native="handleLogin"
-                    />
-                    <span class="show-pwd" @click="showPwd">
-                        <i :class="passwordType === 'password' ? 'icon-rz-eye' : 'icon-rz-eye-open'"></i>
-                    </span>
-                </el-form-item>
-            </el-tooltip>
+                    <el-form-item prop="username">
+                        <img src="@/assets/images/user.png" class="icon" />
+                        <el-input
+                            ref="username"
+                            v-model="loginForm.username"
+                            placeholder="Username"
+                            name="username"
+                            type="text"
+                            tabindex="1"
+                            autocomplete="on"
+                        />
+                    </el-form-item>
 
-            <el-button :loading="loading" type="primary" class="login-btn" @click.native.prevent="handleLogin"
-                >登录
-            </el-button>
+                    <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+                        <el-form-item prop="password">
+                            <img src="@/assets/images/pwd.png" class="icon" />
+                            <el-input
+                                :key="passwordType"
+                                ref="password"
+                                v-model="loginForm.password"
+                                :type="passwordType"
+                                placeholder="Password"
+                                name="password"
+                                tabindex="2"
+                                autocomplete="on"
+                                @keyup.native="checkCapslock"
+                                @blur="capsTooltip = false"
+                                @keyup.enter.native="handleLogin"
+                            />
+                            <span class="show-pwd" @click="showPwd">
+                                <i :class="passwordType === 'password' ? 'icon-rz-eye' : 'icon-rz-eye-open'"></i>
+                            </span>
+                        </el-form-item>
+                    </el-tooltip>
 
-            <div class="forget-pwd">忘记密码</div>
-        </el-form>
+                    <el-button :loading="loading" type="primary" class="login-btn" @click.native.prevent="handleLogin"
+                        >登录
+                    </el-button>
+
+                    <div class="forget-pwd">忘记密码</div>
+                </el-form>
+            </div>
+        </div>
+        <div class="content-bottom"></div>
     </div>
 </template>
 
@@ -183,6 +191,37 @@ export default {
 }
 
 /* reset element-ui css */
+.login {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    .content-top {
+        flex: 1;
+        margin-left: 200px;
+        padding-top: 20px;
+        > img {
+            width: 160px;
+        }
+        > span {
+            vertical-align: bottom;
+            font-size: 18px;
+            font-weight: 700;
+            color: #4ca3a6;
+            margin-bottom: 9px;
+            display: inline-block;
+        }
+    }
+    .content-middle {
+        flex: 12;
+        > div {
+            height: 100%;
+            background-size: auto 100%;
+        }
+    }
+    .content-bottom {
+        flex: 1;
+    }
+}
 .login-container {
     .el-input {
         display: inline-block;
@@ -233,33 +272,40 @@ export default {
 
 <style lang="scss" scoped>
 .login-container {
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: 0;
-    background-size: 100%;
+    // min-height: 100vh;
+    // width: 100%;
+    // overflow: hidden;
+    // background-repeat: no-repeat;
+    // background-position: 0;
+    // background-size: 100%;
 
     .login-form {
-        position: relative;
+        position: absolute;
+        right: 10%;
         width: 380px;
         max-width: 100%;
         margin: 204px auto 0;
-        height: 381px;
-        background: #fff;
+        height: 347px;
+        background: rgba(255, 255, 255, 0.5);
         box-shadow: 0px 2px 7px 0px rgba(85, 154, 248, 0.16);
         border-radius: 10px;
         padding: 0 50px;
         box-sizing: border-box;
-
+        /deep/ .el-form-item {
+            margin-bottom: 24px;
+            .el-form-item__content {
+                background: #fff;
+            }
+        }
         .logo-icon {
+            padding: 5px;
             width: 120px;
             height: 120px;
             background: #fff;
             border-radius: 50%;
             position: absolute;
             left: 130px;
-            top: -60px;
+            top: -80px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -286,11 +332,10 @@ export default {
 
     .title-container {
         position: relative;
-        padding: 75px 0 16px;
-
+        padding: 38px 0 36px;
         .title {
             font-size: 24px;
-            color: #1f2743;
+            color: #4ca3a6;
             text-align: center;
             font-family: Source Han Sans CN;
             font-weight: 400;
@@ -317,7 +362,7 @@ export default {
     .login-btn {
         width: 280px;
         height: 40px;
-        background: rgba(19, 100, 182, 1);
+        background: #4ca3a6;
         border-radius: 20px;
         font-size: 14px;
         margin-top: 2px;

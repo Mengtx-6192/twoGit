@@ -1,27 +1,24 @@
 <template>
     <div class="app-main">
-        <header class="top">
-            <div class="logo">
-                <img :src="logoSmall" v-if="logoSmall" />
-                <!-- <span>{{ titie }}</span> -->
-            </div>
+        <header class="top" :style="{ height: `${pageHeader.height}px` }">
+            <div class="logo"><img :src="pageHeader.logoSmall" v-if="pageHeader.logoSmall" /></div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
-                <!-- <el-dropdown class="drop-lang" @command="changeLang" trigger="click">
+                <el-dropdown class="drop-lang" @command="changeLang" trigger="click" v-if="pageHeader.lang">
                     <span class="el-dropdown-link">
                         <el-tooltip content="中英文" placement="bottom" effect="light">
                             <i class="icon-rz-en" />
-                        </el-tooltip> -->
-                <!-- {{ $t('common.home') }}<i class="el-icon-arrow-down el-icon--right"></i> -->
-                <!-- </span>
+                        </el-tooltip>
+                        <!-- {{ $t('common.home') }}<i class="el-icon-arrow-down el-icon--right"></i> -->
+                    </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="zh">简体中文</el-dropdown-item>
                         <el-dropdown-item command="en">English</el-dropdown-item>
                     </el-dropdown-menu>
-                </el-dropdown> -->
+                </el-dropdown>
                 <choose-theme />
-                <screen-full />
-                <!-- <message /> -->
+                <screen-full v-if="pageHeader.screenful" />
+                <message v-if="pageHeader.message" />
                 <user />
             </div>
         </header>
@@ -62,7 +59,8 @@ export default {
             titie: Vue.$config.projectName,
             logoSmall: Vue.$config.logoSmall,
             urlQuery: {},
-            showPageTab: false
+            showPageTab: false,
+            pageHeader: Vue.$config.pageHeader
         };
     },
     created() {
@@ -126,16 +124,15 @@ export default {
         justify-content: space-between;
         align-items: center;
         background-color: var(--nav-color);
+        height: 36px;
         .logo {
             padding: 0 30px;
             color: #fff;
-            line-height: 36px;
-            height: 100%;
             font-size: 16px;
 
             img {
                 height: 40px;
-                padding-top: 10px;
+                padding: 10px 0;
             }
         }
         .functions-user {
@@ -160,6 +157,7 @@ export default {
         }
         .menus {
             flex: 1;
+            height: 100%;
         }
     }
 

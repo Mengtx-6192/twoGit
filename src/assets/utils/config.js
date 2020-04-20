@@ -1,10 +1,17 @@
 import logo from '@/assets/images/logo.png';
 import logoSmall from '@/assets/images/logo.png';
 const config = {
-    projectName: '逸刻工程管理系统',
-    logo: logo,
-    logoSmall: logoSmall,
-    loginBg: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/rdp-cpm-fe/imags/login-bg.png',
+    projectName: '欢迎登陆',
+    logo: '',
+    loginBg: 'https://pc-app-uat.egocvs.com/img/login_bg.f00d993d.png',
+    pageHeader: {
+        screenful: true,
+        theme: false,
+        lang: false,
+        message: false,
+        logoSmall: logoSmall,
+        height: 50
+    },
     historyMode: 'history',
     axiosResponseType: 'json',
     clientId: 'yk_cpm',

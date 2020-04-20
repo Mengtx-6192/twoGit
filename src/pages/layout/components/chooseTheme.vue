@@ -1,6 +1,6 @@
 <template>
     <div class="choose-theme">
-        <!-- <el-popover placement="bottom" trigger="click" popper-class="theme-pop">
+        <el-popover placement="bottom" trigger="click" popper-class="theme-pop" v-if="showTheme">
             <el-divider content-position="left"><i class="icon-rz-theme"></i>主题色</el-divider>
             <ul class="theme-list">
                 <li
@@ -18,7 +18,7 @@
             <el-tooltip content="主题" placement="bottom" effect="light" slot="reference">
                 <i class="icon-rz-theme" />
             </el-tooltip>
-        </el-popover> -->
+        </el-popover>
     </div>
 </template>
 
@@ -74,7 +74,8 @@ export default {
                     colorActive: '#ff8f06',
                     colorHover: '#fff7e7'
                 }
-            ]
+            ],
+            showTheme: _.get(Vue.$config, 'pageHeader.theme', true)
         };
     },
     computed: {
@@ -108,7 +109,6 @@ export default {
         }
     },
     created() {
-        debugger
         let curTheme = _.isEmpty(this.activeTheme) ? this.themeList[0] : this.activeTheme;
 
         this.changeTheme(curTheme);
