@@ -91,6 +91,7 @@ export default {
 
     .el-menu-item,
     .el-submenu {
+        min-width: auto !important;
         img {
             width: 18px;
             height: 18px;
