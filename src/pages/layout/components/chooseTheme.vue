@@ -36,10 +36,10 @@ export default {
             themeList: [
                 {
                     label: '默认',
-                    color: '#1364b6',
+                    color: '#4ca3a6',
                     value: 'theme0', // element ui primary color
                     active: true,
-                    navDefaultColor: '#0c3f72', // 导航栏默认色
+                    navDefaultColor: '#515a6e ', // 导航栏默认色
                     navActiveColor: '#042b52', // 导航栏选中
                     colorActive: '#1989FA', // 次主色触发
                     colorHover: '#e7f0f8'
@@ -108,6 +108,7 @@ export default {
         }
     },
     created() {
+        debugger
         let curTheme = _.isEmpty(this.activeTheme) ? this.themeList[0] : this.activeTheme;
 
         this.changeTheme(curTheme);
