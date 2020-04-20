@@ -1,9 +1,9 @@
 <template>
     <div class="app-main">
-        <header class="top">
+        <header class="top" :style="{ height: `${pageHeader.height}px` }">
             <div class="logo"><img :src="logoSmall" v-if="logoSmall" />{{ titie }}</div>
             <top-menu class="menus"></top-menu>
-            <div class="functions-user">
+            <div class="functions-user" v-if="pageHeader.lang">
                 <el-dropdown class="drop-lang" @command="changeLang" trigger="click">
                     <span class="el-dropdown-link">
                         <el-tooltip content="中英文" placement="bottom" effect="light">
@@ -17,8 +17,8 @@
                     </el-dropdown-menu>
                 </el-dropdown>
                 <choose-theme />
-                <screen-full />
-                <message />
+                <screen-full v-if="pageHeader.screenful" />
+                <message v-if="pageHeader.message" />
                 <user />
             </div>
         </header>
@@ -59,7 +59,8 @@ export default {
             titie: Vue.$config.projectName,
             logoSmall: Vue.$config.logoSmall,
             urlQuery: {},
-            showPageTab: false
+            showPageTab: false,
+            pageHeader: Vue.$config.pageHeader
         };
     },
     created() {
@@ -123,11 +124,10 @@ export default {
         justify-content: space-between;
         align-items: center;
         background-color: var(--nav-color);
+        height: 36px;
         .logo {
             padding: 0 30px;
             color: #fff;
-            line-height: 36px;
-            height: 100%;
             font-size: 16px;
 
             img {
@@ -157,6 +157,7 @@ export default {
         }
         .menus {
             flex: 1;
+            height: 100%;
         }
     }
 

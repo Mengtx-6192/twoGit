@@ -29,11 +29,13 @@ export default {
 <style lang="scss" scoped>
 .hamburger-wrap {
     text-align: center;
+    display: flex;
+    align-items: center;
 
     .hamburger {
         color: #fff;
         font-size: 24px;
-        margin: 6px 0 0 20px;
+        margin-left: 20px;
         cursor: pointer;
     }
 }

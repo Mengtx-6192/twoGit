@@ -1,6 +1,6 @@
 <template>
     <div class="choose-theme">
-        <el-popover placement="bottom" trigger="click" popper-class="theme-pop">
+        <el-popover placement="bottom" trigger="click" popper-class="theme-pop" v-if="showTheme">
             <el-divider content-position="left"><i class="icon-rz-theme"></i>主题色</el-divider>
             <ul class="theme-list">
                 <li
@@ -74,7 +74,8 @@ export default {
                     colorActive: '#ff8f06',
                     colorHover: '#fff7e7'
                 }
-            ]
+            ],
+            showTheme: Vue.$config.theme
         };
     },
     computed: {

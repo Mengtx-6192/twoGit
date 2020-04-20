@@ -2,8 +2,15 @@ import logo from '@/assets/images/logo.png';
 const config = {
     projectName: '***管理系统',
     logo: logo,
-    logoSmall: '',
     loginBg: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/rdp-cpm-fe/imags/login-bg.png',
+    pageHeader: {
+        screenful: true,
+        theme: false,
+        lang: true,
+        message: true,
+        logoSmall: '',
+        height: 36
+    },
     historyMode: 'history',
     axiosResponseType: 'json',
     clientId: 'cpm',
