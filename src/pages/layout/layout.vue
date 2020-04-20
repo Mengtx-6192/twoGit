@@ -1,7 +1,7 @@
 <template>
     <div class="app-main">
         <header class="top" :style="{ height: `${pageHeader.height}px` }">
-            <div class="logo"><img :src="logoSmall" v-if="logoSmall" />{{ titie }}</div>
+            <div class="logo"><img :src="logoSmall" v-if="logoSmall" /></div>
             <top-menu class="menus"></top-menu>
             <div class="functions-user">
                 <el-dropdown class="drop-lang" @command="changeLang" trigger="click" v-if="pageHeader.lang">

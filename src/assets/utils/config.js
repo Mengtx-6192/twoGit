@@ -4,10 +4,10 @@ const config = {
     logo: logo,
     loginBg: 'https://rongzer-oss.oss-cn-hangzhou.aliyuncs.com/rdp-cpm-fe/imags/login-bg.png',
     pageHeader: {
-        screenful: false,
-        theme: false,
-        lang: false,
-        message: false,
+        screenful: true,
+        theme: true,
+        lang: true,
+        message: true,
         logoSmall: '',
         height: 36
     },
