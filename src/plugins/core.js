@@ -185,7 +185,7 @@ export default {
                     return response;
                 }
 
-                if (response.data.code !== 200) {
+                if (response.data.code && response.data.code !== 200) {
                     Message.error(response.data.message);
                     return Promise.reject({ response });
                 }
