@@ -50,3 +50,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ---2020-4-17 todo by wsl--
 1、表格样式调整
 2、修改默认菜单选中
+
+---2020-4-18 todo by wsl ---
+1、树筛选 修改成 不区分大小写

@@ -110,7 +110,10 @@ export default {
             if (!value) {
                 return true;
             }
-            return data[_.get(this.treeObj, 'defaultProps.label', 'label')].indexOf(value) !== -1;
+            return (
+                data[_.get(this.treeObj, 'defaultProps.label', 'label')].toUpperCase().indexOf(value.toUpperCase()) !==
+                -1
+            );
         },
         nodeClick(data, node, event) {
             if (this.treeObj.folderNotClick && data.treeNodeType === 1) {
